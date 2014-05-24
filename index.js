@@ -4,20 +4,20 @@ var maleCounter = 0,
 	maleNames = {},
 	femaleNames = {},
 	weirdGuys = [],
-	invitesArray = [];
+	invitesArray = [],
+	maleFuzzy = null,
+	femaleFuzzy = null;
 
 $(document).ready(function () {
 	$('#main-form').submit(function (e) {
 		e.preventDefault();
 		FB.api(
-		    "/614185518667064/attending/?fields=first_name",
+		    "/436134889822196/attending/?fields=first_name",
 		    function (response) {
 			    if (response && !response.error) {
 			      	invitesArray = response.data;
 			      	if(response.paging.next) {
-			      		console.log('hey');
 			      		$.getJSON(response.paging.next, function (responseNext) {
-			      			console.log(responseNext);
 						    if (responseNext && !responseNext.error) {
 						      	invitesArray.push.apply(invitesArray,responseNext.data);
 						      	getNames(invitesArray);
@@ -118,8 +118,7 @@ var defaultDiacriticsRemovalap = [
     {'base':'w','letters':'\u0077\u24E6\uFF57\u1E81\u1E83\u0175\u1E87\u1E85\u1E98\u1E89\u2C73'},
     {'base':'x','letters':'\u0078\u24E7\uFF58\u1E8B\u1E8D'},
     {'base':'y','letters':'\u0079\u24E8\uFF59\u1EF3\u00FD\u0177\u1EF9\u0233\u1E8F\u00FF\u1EF7\u1E99\u1EF5\u01B4\u024F\u1EFF'},
-    {'base':'z','letters':'\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763'},
-    {'base':'+','letters':'\u2010\u2011\u2012\u2013\u2014\u0020'}
+    {'base':'z','letters':'\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763'}
 ];
 
 var diacriticsMap = {};
@@ -198,7 +197,17 @@ function checkRatio(invites) {
 					totalCounter++;
 				}
 				if (!femaleFound) {
-					weirdGuys.push(invites[i].first_name);
+					maleFuzzy = new FuzzySet(correspondingMaleTable);
+					femaleFuzzy = new FuzzySet(correspondingFemaleTable);
+					var femaleResult = femaleFuzzy.get(invites[i].first_name)[0][0];
+					var maleResult = maleFuzzy.get(invites[i].first_name)[0][0];
+					if (maleResult > femaleResult && maleResult > 1) {
+						maleCounter++;
+					} else if (femaleResult > maleResult && femaleResult > 1) {
+						femaleCounter++;
+					} else {
+							weirdGuys.push(invites[i].first_name);
+					}
 				}
 			}
 		}
