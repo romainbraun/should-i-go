@@ -6,14 +6,28 @@ var maleCounter = 0,
 	weirdGuys = [],
 	invitesArray = [],
 	maleFuzzy = null,
-	femaleFuzzy = null;
+	femaleFuzzy = null,
+	ctx = null,
+	$progressText = null;
 
 $(document).ready(function () {
+
+	ctx = document.getElementById("results").getContext("2d");
+	$progressText = $('.progress');
+
 	$('#main-form').submit(function (e) {
+		var eventId = $('#main-form input').val();
+
 		e.preventDefault();
+		eventId = eventId.substring(eventId.indexOf('events/')+7);
+		eventId = eventId.substring(eventId.indexOf('/'), 0);
+		$('.wrapper').addClass('up');
+		$('form,p').addClass('hidden');
+		$progressText.html('Connecting to facebook...');
 		FB.api(
-		    "/436134889822196/attending/?fields=first_name",
+		    "/" + eventId + "/attending/?fields=first_name",
 		    function (response) {
+		    	$progressText.html('Parsing the people attending...');
 			    if (response && !response.error) {
 			      	invitesArray = response.data;
 			      	if(response.paging.next) {
@@ -137,8 +151,6 @@ function removeDiacritics (str) {
 }
 
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
     } else if (response.status === 'not_authorized') {
@@ -154,17 +166,20 @@ function statusChangeCallback(response) {
 }
 
 function getNames(invites) {
+	$progressText.html('Downloading name database...');
 	$.getJSON("names.males.json?id="+Math.random(), function (data) {
 		maleNames = data.males;
 		$.getJSON("names.females.json?id="+Math.random(), function (data) {
 			femaleNames = data.females;
-			checkRatio(invites);
+			$progressText.html('Identifying girls, boys, and lamas... This could take a while.');
+			setTimeout(function () {
+				checkRatio(invites);
+			},100);
 		});
 	});
 }
 
 function checkRatio(invites) {
-	console.log(invites);
 	var correspondingMaleTable = "",
 	correspondingFemaleTable = "",
 	maleFound = false,
@@ -212,8 +227,41 @@ function checkRatio(invites) {
 			}
 		}
 	}
+	$progressText.html('Done!');
 	console.log(maleCounter, "males", femaleCounter, "females");
 	console.log("total iterations :",totalCounter);
 	console.log('success :',femaleCounter+maleCounter,'people identified out of',invites.length,":",(femaleCounter+maleCounter)*100/invitesLength,"% success,",invitesLength-(femaleCounter+maleCounter),"unidentified weirdos");
 	console.log("weird guys", weirdGuys);
+	displayResults();
+}
+
+function displayResults() {
+	var data = {
+		labels : [""],
+		datasets : [
+			{
+				fillColor : "rgba(0,174,239,0.5)",
+				strokeColor : "rgba(0,174,239,1)",
+				data : [maleCounter*100/(maleCounter+femaleCounter)]
+			},
+			{
+				fillColor : "rgba(233,0,181,0.5)",
+				strokeColor : "rgba(233,0,181,1)",
+				data : [femaleCounter*100/(maleCounter+femaleCounter)]
+			}
+		]
+	}
+	var options = {
+		barValueSpacing : 100,
+		barDatasetSpacing : 100,
+		scaleOverride : true,
+		scaleSteps : 10,
+		scaleStepWidth : 10,
+		scaleStartValue : 0,
+		scaleLineColor : "rgba(0,0,0,0)",
+		scaleLineWidth : 0,
+		scaleShowLabels : false,
+		scaleShowGridLines : false
+	}
+	new Chart(ctx).Bar(data,options);
 }

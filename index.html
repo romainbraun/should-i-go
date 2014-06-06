@@ -2,8 +2,37 @@
 <html>
 <head>
 	<title>Should I go to this party ?</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Should I go to this party?</h1>
+    <p class="hidden">Just paste in the URL of the facebook event you want to sausage check</p>
+    <form action="#" id="main-form">
+      <input type="text">
+      <input type="submit" value="Compute!">
+    </form>
+  </div>
+  <div class="results">
+    <span class="progress">Initiating...</span>
+  </div>
+  <canvas id="results" width="800" height="400"></canvas>
+  <script type="text/javascript">
+      WebFontConfig = {
+        google: { families: [ 'Signika:400,700:latin' ] }
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+          '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })(); </script>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="fuzzyset.js"></script>
+	<script type="text/javascript" src="Chart.min.js"></script>
 	<script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -26,13 +55,5 @@
        }(document, 'script', 'facebook-jssdk'));
     </script>
 	<script type="text/javascript" src="index.js"></script>
-</head>
-<body>
-	<h1>Should I go to this party ?</h1>
-	<p>Just paste the URL to the event you want to sausage-check.</p>
-	<form action="#" id="main-form">
-		<input type="text">
-		<input type="submit">
-	</form>
 </body>
 </html>
