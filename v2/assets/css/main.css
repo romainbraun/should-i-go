@@ -9,24 +9,35 @@ body {
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
+	font-weight: normal;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 }
 ::-webkit-input-placeholder {
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 :-moz-placeholder { /* Firefox 18- */
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 :-ms-input-placeholder {  
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 h1 {
@@ -34,7 +45,7 @@ h1 {
 }
 input {
 	display: block;
-	margin: 10px auto;
+	margin: 15px auto;
 	height: 26px;
 	width: 476px;
 	padding: 12px;
@@ -43,6 +54,8 @@ input {
 	border-radius: 6px;
 	border: 0;
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 }
 .compute {
 	width: 320px;
@@ -55,6 +68,9 @@ input {
 	color: #fff;
 	border-radius: 6px;
 	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
 	line-height: 60px;
 	padding: 0;
+	margin-top: 45px;
 }
