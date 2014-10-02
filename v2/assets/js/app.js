@@ -1,3 +1,3 @@
 var test = "ok";
-
-console.log(test);
+var facebookAPI = require('./facebook.js');
+console.log(facebookAPI);
