@@ -1,0 +1,26 @@
+{
+  "name": "should-i-go",
+  "version": "1.0.0",
+  "description": "Facebook Ratio Calculator",
+  "dependencies": {
+    "browserify": "^5.12.1",
+    "gulp": "^3.8.8",
+    "gulp-sourcemaps": "^1.2.2",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "snapsvg": "^0.3.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romainbraun/should-i-go"
+  },
+  "author": "Romain Braun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romainbraun/should-i-go/issues"
+  },
+  "homepage": "https://github.com/romainbraun/should-i-go"
+}
