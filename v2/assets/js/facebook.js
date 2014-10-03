@@ -7,6 +7,7 @@ function statusChangeCallback(response, callback) {
 		console.log('yolo');
 		FB.login(function(response) {
 		   console.log(response);
+		   callback();
 		 }, {scope: 'public_profile'});
 	} else {
 		console.log('yolodouble');
