@@ -6,6 +6,7 @@ function fbLoaded() {
 	facebookAPI.init(function () {
 		FB.api('/me', function(response) {
 	      console.log('Successful login for: ' + response.name);
+	      $('body').addClass('show');
 	    });
 	});
 }
@@ -17,7 +18,7 @@ window.fbAsyncInit = function() {
 		xfbml      : true,  
 		version    : 'v2.1' 
 	});
-	
+
 	fbLoaded();
 };
 
