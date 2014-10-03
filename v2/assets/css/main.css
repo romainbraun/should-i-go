@@ -12,6 +12,8 @@ body {
 	font-weight: normal;
 	-webkit-text-stroke: 0px;
 	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	overflow: hidden;
 }
 ::-webkit-input-placeholder {
 	font-family: 'Fjalla One', sans-serif;
@@ -43,6 +45,23 @@ body {
 h1 {
 	margin: 0;
 }
+h1 img {
+	height: 346px;
+	-webkit-transition: height .7s ease;
+	-moz-transition: height .7s ease;
+	-o-transition: height .7s ease;
+	transition: height .7s ease;
+	-webkit-transition-delay: .5s;
+    transition-delay: .5s;
+}
+.user-input {
+	position: relative;
+	left: 0;
+	-webkit-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
 input {
 	display: block;
 	margin: 15px auto;
@@ -73,4 +92,13 @@ input {
 	line-height: 60px;
 	padding: 0;
 	margin-top: 45px;
+}
+
+.step2 h1 img{
+	height: 250px;
+	
+}
+.step2 .user-input {
+	left: -100%;
+	
 }
