@@ -8,6 +8,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var awspublish = require('gulp-awspublish');
 var aws = require('./aws.json');
+var watch = require('gulp-watch');
 
 // var aws = JSON.parse(awsInfos);
 
@@ -37,6 +38,12 @@ gulp.task('javascript', function() {
   };
 
   return bundle();
+});
+
+gulp.task('watch', function () {
+    watch('./assets/js/*.js', function (files, cb) {
+        gulp.start('javascript', cb);
+    });
 });
 
 

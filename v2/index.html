@@ -6,14 +6,18 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
-	<h1>
-		<a href="#">
-			<img src="assets/img/temp-logo.png" alt="Should I go?">
-		</a>
-	</h1>
-	<span>Just paste in the URL of the facebook event you want to sausage check</span>
-	<input type="url" placeholder="Kazakhstan is the greatest country in the world. All other count..">
-	<button class="compute">Compute!</button>
+	<div class="step1">
+		<h1>
+			<a href="#">
+				<img src="assets/img/temp-logo.png" alt="Should I go?">
+			</a>
+		</h1>
+		<div class="user-input">
+			<span>Just paste in the URL of the facebook event you want to sausage check</span>
+			<input type="url" placeholder="Kazakhstan is the greatest country in the world. All other count..">
+			<button class="compute">Compute!</button>
+		</div>
+	</div>
 	<script type="text/javascript" src="assets/js/dist/1.0.0.should-i-go.min.js"></script>
 	<script type="text/javascript">
 		(function(d, s, id) {
@@ -24,5 +28,6 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 	</script>
+
 </body>
 </html>
