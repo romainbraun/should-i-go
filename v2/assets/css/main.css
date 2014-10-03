@@ -47,20 +47,19 @@ h1 {
 }
 h1 img {
 	height: 346px;
-	-webkit-transition: height .7s ease;
-	-moz-transition: height .7s ease;
-	-o-transition: height .7s ease;
-	transition: height .7s ease;
+	-webkit-transition: -webkit-transform .7s ease;
+	-moz-transition: -moz-transform .7s ease;
+	-o-transition: -o-transform .7s ease;
+	transition: transform .7s ease;
 	-webkit-transition-delay: .5s;
     transition-delay: .5s;
 }
 .user-input {
 	position: relative;
-	left: 0;
-	-webkit-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-	-moz-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-	-o-transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-	transition: left .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-webkit-transition: -webkit-transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-moz-transition: -moz-transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	-o-transition: -o-transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	transition: transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 input {
 	display: block;
@@ -95,10 +94,15 @@ input {
 }
 
 .step2 h1 img{
-	height: 250px;
+	-webkit-transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	-o-transform: scale(0.75);
+	transform: scale(0.75);
 	
 }
 .step2 .user-input {
-	left: -100%;
-	
+	-webkit-transform: translate(-100%, 0);
+	-moz-transform: translate(-100%, 0);
+	-o-transform: translate(-100%, 0);
+	transform: translate(-100%, 0);
 }
