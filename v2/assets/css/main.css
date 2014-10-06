@@ -54,14 +54,28 @@ body {
 h1 {
 	margin: 0;
 }
-h1 img {
-	height: 346px;
+h1 a {
+	position: relative;
+	width: 500px;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
 	-webkit-transition: -webkit-transform .7s ease;
 	-moz-transition: -moz-transform .7s ease;
 	-o-transition: -o-transform .7s ease;
 	transition: transform .7s ease;
 	-webkit-transition-delay: .5s;
     transition-delay: .5s;
+}
+h1 img {
+	height: 100%;
+    vertical-align: bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+h1 .should-i-go-logo {
+
 }
 .user-input {
 	position: relative;
@@ -102,7 +116,7 @@ input {
 	margin-top: 45px;
 }
 
-.step2 h1 img{
+.step2 h1 a{
 	-webkit-transform: scale(0.75);
 	-moz-transform: scale(0.75);
 	-o-transform: scale(0.75);

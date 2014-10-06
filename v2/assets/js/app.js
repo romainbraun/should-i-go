@@ -1,4 +1,5 @@
 var facebookAPI = require('./facebook.js');
+var facebookCredentials = require('./facebookCredentials.json');
 var $ = require('jquery');
 
 
@@ -13,7 +14,7 @@ function fbLoaded() {
 
 window.fbAsyncInit = function() {
 	FB.init({
-		appId      : '305479839616788',
+		appId      : facebookCredentials.testAppId,
 		cookie     : true,
 		xfbml      : true,  
 		version    : 'v2.1' 
