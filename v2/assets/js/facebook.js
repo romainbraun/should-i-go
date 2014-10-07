@@ -8,13 +8,13 @@ function statusChangeCallback(response, callback) {
 		FB.login(function(response) {
 		   console.log(response);
 		   callback();
-		 }, {scope: 'public_profile'});
+		 }, {scope: 'public_profile, user_events', });
 	} else {
 		console.log('yolodouble');
 		FB.login(function(response) {
 		   console.log(response);
 		   callback();
-		 }, {scope: 'public_profile'});
+		 }, {scope: 'public_profile, user_events'});
 	}
 }
 
@@ -32,8 +32,9 @@ module.exports.init = function (callback) {
 
 module.exports.getEventInfos = function (eventId, callback) {
 	FB.api(
-	    "/" + eventId + "/attending/?fields=first_name",
+	    "/v2.1/" + eventId + "/attending/?fields=first_name,picture.height(320).width(320).type(large)",
 	    function (response) {
+	    	console.log(response);
 		    callback(response);
 	    }
 	);
