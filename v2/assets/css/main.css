@@ -196,6 +196,17 @@ input {
 	fill: #fff;
 }
 
+
+
+
+
+
+
+
+
+
+/*RESULTS*/
+
 .step2 h1 a{
 	-webkit-transform: scale(0.75);
 	-moz-transform: scale(0.75);
@@ -227,6 +238,109 @@ input {
 	display: none;
 }
 
+.results .actions {
+	position: relative;
+}
+
+.results .see{
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 23px;
+	background: transparent;
+	border: solid #fff;
+	border-width: 1px 1px 1px 0;
+	color: #fff;
+	border-radius: 4px;
+	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0px;
+	-webkit-font-smoothing: antialiased;
+	line-height: 40px;
+	padding: 0;
+	position: absolute;
+	transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+}
+
+.results .see:hover {
+	width: 160px;
+}
+
+.results .see-guys {
+	border-width: 1px 0 1px 1px;
+	right: 50%;
+	margin-right: -140px;
+}
+
+.results .see-guys:hover {
+	background: rgba(35,74,116,0.1);
+	border-color: #234a74;
+	margin-right: -180px;
+}
+
+.results .see-girls {
+	left: 50%;
+	margin-left: -140px;	
+}
+
+.results .see-girls:hover {
+	background: rgba(111,53,111,0.1);
+	border-color: #6f356f;	
+	margin-left: -180px;	
+}
+
+.see:before {
+    background: transparent;
+    border: solid #fff;
+    border-width: 0 0 1px 1px;
+    border-radius: 4px 0 4px 0;
+    content: '';
+    display: block;
+    height: 29px;
+    left: -11px;
+    position: absolute;
+    top: 3px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 26px;
+    transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+}
+
+.see-guys:before {
+    background: transparent;
+    border: solid #fff;
+    border-width: 1px 1px 0 0;
+    border-radius: 4px 0 4px 0;
+    content: '';
+    display: block;
+    height: 31px;
+    right: -10px;
+    left: inherit;
+    position: absolute;
+    top: 3px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 28px;
+}
+.see-guys:hover:before {
+	background: rgba(35,74,116,0.1);
+	border-color: #234a74;
+}
+
+.see-girls:hover:before {
+	background: rgba(111,53,111,0.1);
+	border-color: #6f356f;	
+}
 
 /*@-webkit-keyframes compute-button {
     0% {

@@ -32,7 +32,7 @@ module.exports.init = function (callback) {
 
 module.exports.getEventInfos = function (eventId, callback) {
 	FB.api(
-	    "/v2.1/" + eventId + "/attending/?fields=first_name,picture.height(320).width(320).type(large)",
+	    "/v2.1/" + eventId + "/attending/?fields=first_name,last_name,picture.height(320).width(320).type(large)",
 	    function (response) {
 	    	console.log(response);
 		    callback(response);
