@@ -333,13 +333,62 @@ input {
     width: 28px;
 }
 .see-guys:hover:before {
-	background: rgba(35,74,116,0.1);
+	/*background: rgba(35,74,116,0.1);*/
 	border-color: #234a74;
+	background: -moz-linear-gradient(0deg rgba(35,74,116,0.1) 50%, rgba(0,0,0,0) 51%); /* FF3.6+ */
+	background: -webkit-gradient(linear, right top, left bottom,  color-stop(50%,rgba(35,74,116,0.1)), color-stop(51%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg rgba(35,74,116,0.1) 50%,rgba(0,0,0,0) 51%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg rgba(35,74,116,0.1) 50%,rgba(0,0,0,0) 51%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg rgba(35,74,116,0.1) 50%,rgba(0,0,0,0) 51%); /* IE10+ */
+	background: linear-gradient(0deg rgba(35,74,116,0.1) 50%,rgba(0,0,0,0) 51%); /* W3C */
 }
 
 .see-girls:hover:before {
 	background: rgba(111,53,111,0.1);
 	border-color: #6f356f;	
+	background: -moz-linear-gradient(0deg rgba(111,53,111,0.1) 50%, rgba(0,0,0,0) 51%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top,   color-stop(50%,rgba(111,53,111,0.1)), color-stop(51%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg rgba(111,53,111,0.1) 50%,rgba(0,0,0,0) 51%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg rgba(111,53,111,0.1) 50%,rgba(0,0,0,0) 51%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg rgba(111,53,111,0.1) 50%,rgba(0,0,0,0) 51%); /* IE10+ */
+	background: linear-gradient(0deg rgba(111,53,111,0.1) 50%,rgba(0,0,0,0) 51%); /* W3C */
+}
+
+
+
+
+
+
+
+
+
+
+/*OVERLAYS*/
+
+.overlay {
+	position: absolute;
+	/*display: none;*/
+	width: 100%;
+	top: 0;
+}
+
+.person {
+	position: absolute;
+	transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+}
+.person img {
+	width: 100%;
+	height: 100%;
+}
+.person:hover {
+	z-index: 1000;
+	transform: scale(1.25, 1.25);
+	-webkit-transform: scale(1.25, 1.25);
+	-moz-transform: scale(1.25, 1.25);
+	-o-transform: scale(1.25, 1.25);
 }
 
 /*@-webkit-keyframes compute-button {

@@ -1,14 +1,26 @@
 var facebookAPI = require('./facebook.js');
 var facebookCredentials = require('./facebookCredentials.json');
 var SVG = require('./svgHandler.js');
+var Overlays = require('./overlays.js');
 var $ = require('jquery');
 
 
 function fbLoaded() {
 	facebookAPI.init(function () {
 		FB.api('/me', function(response) {
-	      console.log('Successful login for: ' + response.name);
-	      $('body').addClass('show');
+			console.log('Successful login for: ' + response.name);
+			$('body').addClass('show');
+
+
+
+			// for testing purposes
+			setTimeout(function () {
+				facebookAPI.getEventInfos(1533621923519547, function (response) {
+				console.log(response);
+				Overlays.populate(response.data);
+				$('.step1').removeClass().addClass('step2');
+			});      	
+	      }, 1000);
 	    });
 	});
 }
