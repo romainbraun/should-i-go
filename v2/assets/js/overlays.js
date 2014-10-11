@@ -62,4 +62,6 @@ module.exports.populate = function (people) {
 	computePositions(peopleLength);
 
 	createButtons();
+
+	$(window).resize($.debounce(function () {computePositions(peopleLength);}, 500));
 };
