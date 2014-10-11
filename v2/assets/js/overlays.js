@@ -55,7 +55,7 @@ module.exports.populate = function (people) {
 	var overlay = document.getElementById('guys-overlay'),
 		content = "";
 	for (var i = 0, peopleLength = people.length; i < peopleLength; i++) {
-		content += '<div class="person"><img src="assets/img/bg.png" data-src="' + people[i].picture.data.url + '"> <div class="person-overlay"><span>' + people[i].first_name + '</span><span>' + people[i].last_name + '</span><hr></div></div>';
+		content += '<div class="person"><a href="http://www.facebook.com/' + people[i].id + '" target="_blank"><img src="assets/img/bg.png" data-src="' + people[i].picture.data.url + '"> <div class="person-overlay"><span>' + people[i].first_name + '</span><span>' + people[i].last_name + '</span><hr></div></a></div>';
 	}
 	overlay.insertAdjacentHTML('beforeend', content);
 
