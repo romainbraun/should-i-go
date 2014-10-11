@@ -1,4 +1,4 @@
 aws.json
 .htpasswd
 passwords.txt
-v2/node_modules/
+node_modules/
