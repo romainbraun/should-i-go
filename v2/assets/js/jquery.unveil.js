@@ -9,6 +9,7 @@
  * https://github.com/luis-almeida
  */
 var $ = require('jquery');
+require('./jquery.debounce-1.0.5.js');
 
   $.fn.unveil = function(threshold, callback) {
 
@@ -45,7 +46,7 @@ var $ = require('jquery');
       images = images.not(loaded);
     }
 
-    $w.on("scroll.unveil resize.unveil lookup.unveil", unveil);
+    $w.on("scroll.unveil resize.unveil lookup.unveil", $.throttle(unveil, 1000));
 
     unveil();
 

@@ -1,0 +1,93 @@
+/*! 
+ * Marka - v0.3.1 
+ * http://fian.my.id/marka 
+ * 
+ * Copyright 2014 Alfiana E. Sibuea and other contributors 
+ * Released under the MIT license 
+ * https://github.com/fians/marka/blob/master/LICENSE 
+ */ 
+/* Core style */
+.marka {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+}
+.marka i {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #fff;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
+}
+.marka.marka-set i {
+  opacity: 1;
+}
+.marka.marka-rotate-right {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.marka.marka-rotate-left {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.marka.marka-rotate-down {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.marka.marka-icon-empty {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+
+/* Chevron icon */
+.marka.marka-icon-chevron i {
+  -webkit-transform: rotate(45deg) scale(0.6, 0.1) translate(16.5%, -50%);
+  -moz-transform: rotate(45deg) scale(0.6, 0.1) translate(16.5%, -50%);
+  -ms-transform: rotate(45deg) scale(0.6, 0.1) translate(16.5%, -50%);
+  -o-transform: rotate(45deg) scale(0.6, 0.1) translate(16.5%, -50%);
+  transform: rotate(45deg) scale(0.6, 0.1) translate(16.5%, -50%);
+}
+.marka.marka-icon-chevron i:nth-child(2) {
+  -webkit-transform: rotate(135deg) scale(0.6, 0.1) translate(16.5%, 50%);
+  -moz-transform: rotate(135deg) scale(0.6, 0.1) translate(16.5%, 50%);
+  -ms-transform: rotate(135deg) scale(0.6, 0.1) translate(16.5%, 50%);
+  -o-transform: rotate(135deg) scale(0.6, 0.1) translate(16.5%, 50%);
+  transform: rotate(135deg) scale(0.6, 0.1) translate(16.5%, 50%);
+}
+
+/* Times icon */
+.marka.marka-icon-times i {
+  -webkit-transform: rotate(45deg) scale(0.7, 0.1);
+  -moz-transform: rotate(45deg) scale(0.7, 0.1);
+  -ms-transform: rotate(45deg) scale(0.7, 0.1);
+  -o-transform: rotate(45deg) scale(0.7, 0.1);
+  transform: rotate(45deg) scale(0.7, 0.1);
+}
+.marka.marka-icon-times i:nth-child(2) {
+  -webkit-transform: rotate(-45deg) scale(0.7, 0.1);
+  -moz-transform: rotate(-45deg) scale(0.7, 0.1);
+  -ms-transform: rotate(-45deg) scale(0.7, 0.1);
+  -o-transform: rotate(-45deg) scale(0.7, 0.1);
+  transform: rotate(-45deg) scale(0.7, 0.1);
+}
