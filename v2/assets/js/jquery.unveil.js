@@ -1,3 +1,4 @@
+/*globals require */
 /**
  * jQuery Unveil
  * A very lightweight jQuery plugin to lazy load images
@@ -8,50 +9,53 @@
  * Copyright 2013 Luís Almeida
  * https://github.com/luis-almeida
  */
-var $ = require('jquery');
-require('./jquery.debounce-1.0.5.js');
+(function () {
+  'use strict';
+  var $ = require('jquery');
+  require('./jquery.debounce-1.0.5.js');
 
-  $.fn.unveil = function(threshold, callback) {
+    $.fn.unveil = function(threshold, callback) {
 
-    var $w = $(window),
-        th = threshold || 0,
-        retina = window.devicePixelRatio > 1,
-        attrib = retina? "data-src-retina" : "data-src",
-        images = this,
-        loaded;
+      var $w = $(window),
+          th = threshold || 0,
+          retina = window.devicePixelRatio > 1,
+          attrib = retina? "data-src-retina" : "data-src",
+          images = this,
+          loaded;
 
-    this.one("unveil", function() {
-      var source = this.getAttribute(attrib);
-      source = source || this.getAttribute("data-src");
-      if (source) {
-        if (this.getAttribute("src") !==source) {
-          this.setAttribute("src", source);
-          if (typeof callback === "function") callback.call(this);
+      this.one("unveil", function() {
+        var source = this.getAttribute(attrib);
+        source = source || this.getAttribute("data-src");
+        if (source) {
+          if (this.getAttribute("src") !==source) {
+            this.setAttribute("src", source);
+            if (typeof callback === "function") callback.call(this);
+          }
         }
-      }
-    });
-
-    function unveil() {
-      var inview = images.filter(function() {
-        var $e = $(this);
-        if ($e.is(":hidden")) return;
-
-        var wt = $w.scrollTop(),
-            wb = wt + $w.height(),
-            et = $e.offset().top,
-            eb = et + $e.height();
-
-        return eb >= wt - th && et <= wb + th;
       });
 
-      loaded = inview.trigger("unveil");
-      images = images.not(loaded);
-    }
+      function unveil() {
+        var inview = images.filter(function() {
+          var $e = $(this);
+          if ($e.is(":hidden")) return;
 
-    $w.on("scroll.unveil resize.unveil lookup.unveil", $.throttle(unveil, 1000));
+          var wt = $w.scrollTop(),
+              wb = wt + $w.height(),
+              et = $e.offset().top,
+              eb = et + $e.height();
 
-    unveil();
+          return eb >= wt - th && et <= wb + th;
+        });
 
-    return this;
+        loaded = inview.trigger("unveil");
+        images = images.not(loaded);
+      }
 
-  };
+      $w.on("scroll.unveil resize.unveil lookup.unveil", $.throttle(unveil, 1000));
+
+      unveil();
+
+      return this;
+
+    };
+})();
