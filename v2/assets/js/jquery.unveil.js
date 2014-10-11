@@ -24,8 +24,10 @@ require('./jquery.debounce-1.0.5.js');
       var source = this.getAttribute(attrib);
       source = source || this.getAttribute("data-src");
       if (source) {
-        this.setAttribute("src", source);
-        if (typeof callback === "function") callback.call(this);
+        if (this.getAttribute("src") !==source) {
+          this.setAttribute("src", source);
+          if (typeof callback === "function") callback.call(this);
+        }
       }
     });
 
