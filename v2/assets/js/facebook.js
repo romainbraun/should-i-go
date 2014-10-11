@@ -1,4 +1,4 @@
-/*globals FB, module */
+/*globals FB, module, checkLoginState */
 (function () {
 	'use strict';
 	function statusChangeCallback(response, callback) {

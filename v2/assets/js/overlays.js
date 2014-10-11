@@ -1,4 +1,4 @@
-/*globals require, module */
+/*globals require, module, Marka */
 (function () {
 	'use strict';
 	var $ = require('jquery');
