@@ -58,6 +58,8 @@ a {
 }
 h1 {
 	margin: 0;
+	font-size: 18px;
+	font-weight: normal;
 }
 
 
@@ -70,7 +72,7 @@ h1 {
 
 
 /*LOGO*/
-h1 {
+.logo {
 	position: relative;
 	height: 400px;
 	width: 500px;
@@ -78,7 +80,7 @@ h1 {
 	margin: 0 auto;
 	overflow: auto;
 }
-h1 a {
+.logo a {
 	position: relative;
 	z-index: 2;
 	width: 359px;
@@ -95,10 +97,10 @@ h1 a {
     transform-origin: 50% 0;
     -webkit-transform-origin: 50% 0;
 }
-.show h1 a {
+.show .logo a {
     -webkit-animation: logo 1s steps(23) .3s forwards;
 }
-h1 img {
+.logo img {
 	height: 100%;
 	z-index: 1;
     vertical-align: bottom;
@@ -114,7 +116,7 @@ h1 img {
 	-webkit-transition-delay: .5s;
     transition-delay: .5s;
 }
-.show h1 img {
+.show .logo img {
 	opacity: 1;
 }
 @keyframes logo {
