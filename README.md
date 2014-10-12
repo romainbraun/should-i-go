@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/repos/5438245ae30ba0292400ef39/badges/1b0ee997ad2c39000f60/gpa.svg)](https://codeclimate.com/repos/5438245ae30ba0292400ef39/feed)
+[![Code Climate](https://codeclimate.com/github/romainbraun/should-i-go/badges/gpa.svg)](https://codeclimate.com/github/romainbraun/should-i-go)
 
 should-i-go
 ===========
