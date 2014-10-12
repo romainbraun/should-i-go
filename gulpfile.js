@@ -69,7 +69,7 @@
   gulp.task('publish', function() {
 
     // create a new publisher
-    var publisher = awspublish.create({ key: aws.key,  secret: aws.secret, bucket: aws.bucket });
+    var publisher = awspublish.create({ key: aws.key,  secret: aws.secret, bucket: aws.bucket, endpoint: aws.endpoint, region: aws.region });
 
     // define custom headers
     var headers = {

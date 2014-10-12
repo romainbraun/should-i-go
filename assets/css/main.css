@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-	background: url(../img/bg.png) 0 0 repeat;
+	background: url(/assets/img/bg.png) 0 0 repeat;
 	font-family: 'Fjalla One', sans-serif;
 	font-size: 18px;
 	color: #fff;
@@ -90,7 +90,7 @@ h1 {
 	height: 258px;
 	display: block;
 	margin: 71px auto 0 auto;
-	background: url(../img/spritealigned.png) 0 0 no-repeat;
+	background: url(/assets/img/spritealigned.png) 0 0 no-repeat;
 }
 .show .logo a {
     animation: logo 1s steps(23) .3s forwards;
