@@ -2,16 +2,18 @@
 (function () {
   'use strict';
 
-  var browserify  = require('browserify'),
-      gulp        = require('gulp'),
-      source      = require('vinyl-source-stream'),
-      buffer      = require('vinyl-buffer'),
-      uglify      = require('gulp-uglify'),
-      sourcemaps  = require('gulp-sourcemaps'),
-      awspublish  = require('gulp-awspublish'),
-      aws         = require('./aws.json'),
-      watch       = require('gulp-watch'),
-      minifyCSS   = require('gulp-minify-css');
+  var browserify    = require('browserify'),
+      gulp          = require('gulp'),
+      source        = require('vinyl-source-stream'),
+      buffer        = require('vinyl-buffer'),
+      uglify        = require('gulp-uglify'),
+      sourcemaps    = require('gulp-sourcemaps'),
+      awspublish    = require('gulp-awspublish'),
+      aws           = require('./aws.json'),
+      watch         = require('gulp-watch'),
+      minifyCSS     = require('gulp-minify-css'),
+      autoprefixer  = require('gulp-autoprefixer'),
+      size          = require('gulp-filesize');
 
   // var aws = JSON.parse(awsInfos);
 
@@ -33,9 +35,10 @@
         .bundle()
         .pipe(source(getBundleName() + '.js'))
         .pipe(buffer())
+        .pipe(size())
         .pipe(sourcemaps.init({loadMaps: true}))
-          // Add transformation tasks to the pipeline here.
-          .pipe(uglify())
+        .pipe(uglify())
+        .pipe(size())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./assets/js/dist/'));
     };
@@ -45,6 +48,10 @@
 
   gulp.task('css', function() {
     gulp.src('./assets/css/main.css')
+      .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+      }))
       .pipe(minifyCSS({keepSpecialComments: 0, relativeTo: './assets/css/', processImport: true}))
       .pipe(gulp.dest('./assets/css/dist/'));
   });
