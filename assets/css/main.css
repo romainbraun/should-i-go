@@ -79,6 +79,14 @@ h1 {
 	display: block;
 	margin: 0 auto;
 	overflow: auto;
+	-webkit-transition: -webkit-transform .7s ease;
+	-moz-transition: -moz-transform .7s ease;
+	-o-transition: -o-transform .7s ease;
+	transition: transform .7s ease;
+	-webkit-transition-delay: .5s;
+    transition-delay: .5s;
+    transform-origin: 50% 0;
+    -webkit-transform-origin: 50% 0;
 }
 .logo a {
 	position: relative;
@@ -88,14 +96,6 @@ h1 {
 	display: block;
 	margin: 71px auto 0 auto;
 	background: url(../img/spritealigned.png) 0 0 no-repeat;
-	-webkit-transition: -webkit-transform .7s ease;
-	-moz-transition: -moz-transform .7s ease;
-	-o-transition: -o-transform .7s ease;
-	transition: transform .7s ease;
-	-webkit-transition-delay: .5s;
-    transition-delay: .5s;
-    transform-origin: 50% 0;
-    -webkit-transform-origin: 50% 0;
 }
 .show .logo a {
     -webkit-animation: logo 1s steps(23) .3s forwards;
@@ -238,7 +238,7 @@ input {
 
 /*RESULTS*/
 
-.step2 h1 a{
+.step2 .logo{
 	-webkit-transform: scale(0.75);
 	-moz-transform: scale(0.75);
 	-o-transform: scale(0.75);
