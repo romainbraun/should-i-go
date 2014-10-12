@@ -285,7 +285,7 @@
     // global object.
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = FuzzySet;
-        root.FuzzySet = FuzzySet;
+        // root.FuzzySet = FuzzySet;
     } else {
         root.FuzzySet = FuzzySet;
     }

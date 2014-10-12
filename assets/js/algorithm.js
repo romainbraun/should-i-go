@@ -1,34 +1,35 @@
 /*globals require, module */
 (function () {
 	'use strict';
-	var $ 				= require('jquery'),
-		maleNames 		= {},
-		femaleNames 	= {},
-		diacriticsTable = require('./resources/diacritics.json'),
-		diacriticsMap 	= {},
-		maleCounter 	= 0,
-		femaleCounter 	= 0,
-		totalCounter 	= 0,
-		maleFuzzy 		= null,
-		femaleFuzzy 	= null,
-		FuzzySet		= require('./fuzzyset.js');
+	var $				= require('jquery'),
+		maleNames		= {},
+		femaleNames		= {},
+		diacriticsTable	= require('./resources/diacritics.json'),
+		diacriticsMap	= {},
+		maleCounter		= 0,
+		femaleCounter	= 0,
+		totalCounter	= 0,
+		maleFuzzy		= null,
+		femaleFuzzy		= null,
+		FuzzySet		= require('./fuzzyset.js'),
+		peopleTable		= [];
 
 
 	function prepareDiacritics() {
 		for (var i=0; i < diacriticsTable.length; i++){
-		    var letters = diacriticsTable[i].letters.split("");
-		    for (var j=0; j < letters.length ; j++){
-		        diacriticsMap[letters[j]] = diacriticsTable[i].base;
-		    }
+			var letters = diacriticsTable[i].letters.split("");
+			for (var j=0; j < letters.length ; j++){
+				diacriticsMap[letters[j]] = diacriticsTable[i].base;
+			}
 		}
 	}
 
 	// "what?" version ... http://jsperf.com/diacritics/12
 	// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
 	function removeDiacritics (str) {
-	    return str.replace(/[^\u0000-\u007E]/g, function(a){
-	       return diacriticsMap[a] || a;
-	    });
+		return str.replace(/[^\u0000-\u007E]/g, function(a){
+			return diacriticsMap[a] || a;
+		});
 	}
 
 	function getNames(callback) {
@@ -41,48 +42,50 @@
 		});
 	}
 
+	function searchForCorrespondance(i, correspondingTable) {
+		for (var j=0, length = correspondingTable.length; j < length; j++) {
+			totalCounter++;
+			if (peopleTable[i].first_name === removeDiacritics(correspondingTable[j].toUpperCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	function checkRatio(people) {
-		var correspondingMaleTable 		= "",
-			correspondingFemaleTable 	= "",
-			maleFound 					= false,
-			femaleFound 				= false,
+		var correspondingMaleTable		= "",
+			correspondingFemaleTable	= "",
+			maleFound					= false,
+			femaleFound					= false,
 			maleFuzzyResult				= 0,
 			femaleFuzzyResult			= 0;
+			
+		peopleTable	= people;
 
-		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
+		for (var i=0, peopleLength = peopleTable.length; i < peopleLength; i++) {
 			//Just keeping the first part of the first name if it's made of more than one name
-			if (people[i].first_name.indexOf(' ') > 0) {
-				people[i].first_name = people[i].first_name.substring(0, people[i].first_name.indexOf(' '));
+			if (peopleTable[i].first_name.indexOf(' ') > 0) {
+				peopleTable[i].first_name = peopleTable[i].first_name.substring(0, peopleTable[i].first_name.indexOf(' '));
 			}
-			maleFound 					= false;
-			femaleFound 				= false;
-			people[i].first_name 		= removeDiacritics(people[i].first_name.toUpperCase()); //Getting rid of weird characters.
-			correspondingMaleTable 		= maleNames[people[i].first_name.substring(0,1)];
-			correspondingFemaleTable 	= femaleNames[people[i].first_name.substring(0,1)];
+			maleFound					= false;
+			femaleFound					= false;
+			peopleTable[i].first_name	= removeDiacritics(peopleTable[i].first_name.toUpperCase()); //Getting rid of weird characters.
+			correspondingMaleTable		= maleNames[peopleTable[i].first_name.substring(0,1)];
+			correspondingFemaleTable	= femaleNames[peopleTable[i].first_name.substring(0,1)];
 
 			if (correspondingMaleTable) {
-				for (var j=0, malesLength = correspondingMaleTable.length; j < malesLength; j++) {
-					if (people[i].first_name === removeDiacritics(correspondingMaleTable[j].toUpperCase())) {
-						maleCounter++;
-						maleFound = true;
-						break;
-					}
-					totalCounter++;
-				}
-				if (!maleFound) {
-					for (var k=0, femalesLength = correspondingFemaleTable.length; k < femalesLength; k++) {
-						if (people[i].first_name === removeDiacritics(correspondingFemaleTable[k].toUpperCase())) {
-							femaleCounter++;
-							femaleFound = true;
-							break;
-						}
-						totalCounter++;
-					}
-					if (!femaleFound) {
+				maleFound = searchForCorrespondance(i, correspondingMaleTable, maleCounter, maleFound);
+				if (maleFound) {
+					maleCounter++;
+				} else {
+					femaleFound = searchForCorrespondance(i, correspondingFemaleTable, femaleCounter, femaleFound);
+					if (femaleFound) {
+						femaleCounter++;
+					} else {
 						maleFuzzy = new FuzzySet(correspondingMaleTable);
 						femaleFuzzy = new FuzzySet(correspondingFemaleTable);
-						femaleFuzzyResult = femaleFuzzy.get(people[i].first_name)[0][0];
-						maleFuzzyResult = maleFuzzy.get(people[i].first_name)[0][0];
+						femaleFuzzyResult = femaleFuzzy.get(peopleTable[i].first_name)[0][0];
+						maleFuzzyResult = maleFuzzy.get(peopleTable[i].first_name)[0][0];
 						if (maleFuzzyResult > femaleFuzzyResult && maleFuzzyResult > 1) {
 							maleCounter++;
 						} else if (femaleFuzzyResult > maleFuzzyResult && femaleFuzzyResult > 1) {
