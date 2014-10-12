@@ -1,75 +1,88 @@
-'use strict';
+/*globals require */
+(function () {
+  'use strict';
 
-var browserify = require('browserify');
-var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var awspublish = require('gulp-awspublish');
-var aws = require('./aws.json');
-var watch = require('gulp-watch');
+  var browserify  = require('browserify'),
+      gulp        = require('gulp'),
+      source      = require('vinyl-source-stream'),
+      buffer      = require('vinyl-buffer'),
+      uglify      = require('gulp-uglify'),
+      sourcemaps  = require('gulp-sourcemaps'),
+      awspublish  = require('gulp-awspublish'),
+      aws         = require('./aws.json'),
+      watch       = require('gulp-watch'),
+      minifyCSS   = require('gulp-minify-css');
 
-// var aws = JSON.parse(awsInfos);
+  // var aws = JSON.parse(awsInfos);
 
-var getBundleName = function () {
-  var version = require('./package.json').version;
-  var name = require('./package.json').name;
-  return version + '.' + name + '.' + 'min';
-};
-
-gulp.task('javascript', function() {
-
-  var bundler = browserify({
-    entries: ['./assets/js/app.js'],
-    debug: true
-  });
-
-  var bundle = function() {
-    return bundler
-      .bundle()
-      .pipe(source(getBundleName() + '.js'))
-      .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true}))
-        // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest('./assets/js/dist/'));
+  var getBundleName = function () {
+    var version = require('./package.json').version;
+    var name = require('./package.json').name;
+    return version + '.' + name + '.' + 'min';
   };
 
-  return bundle();
-});
+  gulp.task('javascript', function() {
 
-gulp.task('watch', function () {
-    watch('./assets/js/*.js', function (files, cb) {
-        gulp.start('javascript', cb);
+    var bundler = browserify({
+      entries: ['./assets/js/app.js'],
+      debug: true
     });
-});
+
+    var bundle = function() {
+      return bundler
+        .bundle()
+        .pipe(source(getBundleName() + '.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+          // Add transformation tasks to the pipeline here.
+          .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./assets/js/dist/'));
+    };
+
+    return bundle();
+  });
+
+  gulp.task('css', function() {
+    gulp.src('./assets/css/main.css')
+      .pipe(minifyCSS({keepSpecialComments: 0, relativeTo: './assets/css/', processImport: true}))
+      .pipe(gulp.dest('./assets/css/dist/'));
+  });
+
+  gulp.task('watch', function () {
+      watch('./assets/js/*.js', function (files, cb) {
+          gulp.start('javascript', cb);
+      });
+      watch('./assets/css/*.css', function (files, cb) {
+          gulp.start('css', cb);
+      });
+  });
 
 
-gulp.task('publish', function() {
+  gulp.task('publish', function() {
 
-  // create a new publisher
-  var publisher = awspublish.create({ key: aws.key,  secret: aws.secret, bucket: aws.bucket });
+    // create a new publisher
+    var publisher = awspublish.create({ key: aws.key,  secret: aws.secret, bucket: aws.bucket });
 
-  // define custom headers
-  var headers = {
-     'Cache-Control': 'max-age=315360000, no-transform, public'
-     // ...
-   };
+    // define custom headers
+    var headers = {
+       'Cache-Control': 'max-age=315360000, no-transform, public'
+       // ...
+     };
 
-  return gulp.src('./assets/js/dist/*.js')
+    return gulp.src('./assets/js/dist/*.js')
 
-     // gzip, Set Content-Encoding headers and add .gz extension
-    .pipe(awspublish.gzip({ ext: '.gz' }))
+       // gzip, Set Content-Encoding headers and add .gz extension
+      .pipe(awspublish.gzip({ ext: '.gz' }))
 
-    // publisher will add Content-Length, Content-Type and  headers specified above
-    // If not specified it will set x-amz-acl to public-read by default
-    .pipe(publisher.publish(headers))
+      // publisher will add Content-Length, Content-Type and  headers specified above
+      // If not specified it will set x-amz-acl to public-read by default
+      .pipe(publisher.publish(headers))
 
-    // create a cache file to speed up consecutive uploads
-    .pipe(publisher.cache())
+      // create a cache file to speed up consecutive uploads
+      .pipe(publisher.cache())
 
-     // print upload updates to console
-    .pipe(awspublish.reporter());
-});
+       // print upload updates to console
+      .pipe(awspublish.reporter());
+  });
+})();

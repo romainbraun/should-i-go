@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "gulp-awspublish": "0.0.23",
+    "gulp-minify-css": "^0.3.10",
     "gulp-s3": "^0.3.0",
     "gulp-watch": "^1.0.7",
     "jquery": "^2.1.1"

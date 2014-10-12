@@ -1,3 +1,6 @@
+/*@import is bad, but who cares, it's going to be minified!*/
+@import url(marka.css);
+
 /*GENERAL*/
 
 html, body {
@@ -13,7 +16,7 @@ body {
 	color: #fff;
 	text-align: center;
 	font-weight: normal;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	margin: 0;
 	overflow: hidden;
@@ -31,28 +34,28 @@ a {
 }
 ::-webkit-input-placeholder {
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 :-moz-placeholder { /* Firefox 18- */
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
 
 :-ms-input-placeholder {  
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	font-size: 18px;
 }
@@ -84,9 +87,14 @@ h1 {
 	-o-transition: -o-transform .7s ease;
 	transition: transform .7s ease;
 	-webkit-transition-delay: .5s;
+	-moz-transition-delay: .5s;
+	-o-transition-delay: .5s;
     transition-delay: .5s;
-    transform-origin: 50% 0;
     -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
 }
 .logo a {
 	position: relative;
@@ -99,6 +107,9 @@ h1 {
 }
 .show .logo a {
     -webkit-animation: logo 1s steps(23) .3s forwards;
+    -moz-animation: logo 1s steps(23) .3s forwards;
+    -o-animation: logo 1s steps(23) .3s forwards;
+    animation: logo 1s steps(23) .3s forwards;
 }
 .logo img {
 	height: 100%;
@@ -114,17 +125,19 @@ h1 {
 	-o-transition: opacity 1.3s ease;
 	transition: opacity 1.3s ease;
 	-webkit-transition-delay: .5s;
+	-moz-transition-delay: .5s;
+	-o-transition-delay: .5s;
     transition-delay: .5s;
 }
 .show .logo img {
 	opacity: 1;
 }
 @keyframes logo {
-	0% { background-position: 0px; }
+	0% { background-position: 0; }
 	100% { background-position: -8257px; }
 }
 @-webkit-keyframes logo {
-	0% { background-position: 0px; }
+	0% { background-position: 0; }
 	100% { background-position: -8257px; }
 }
 
@@ -156,7 +169,7 @@ input {
 	border-radius: 6px;
 	border: 0;
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 }
 .compute {
@@ -170,7 +183,7 @@ input {
 	color: #fff;
 	border-radius: 6px;
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	line-height: 60px;
 	padding: 0;
@@ -193,9 +206,14 @@ input {
 
 
 	-webkit-animation:computeButton;
+	-moz-animation:computeButton;
+	-o-animation:computeButton;
     -webkit-animation-duration: 5s;
+    -moz-animation-duration: 5s;
+    -o-animation-duration: 5s;
     -webkit-animation-iteration-count: infinite;
-    /*-webkit-animation-direction: alternate;*/
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
 }
 
 .decoration {
@@ -207,10 +225,18 @@ input {
 	vertical-align: middle;
 	width: 60px;
 	height: 36px;
-	-webkit-animation:maleFemaleButton;
+	-webkit-animation: maleFemaleButton;
+	-moz-animation: maleFemaleButton;
+	-o-animation: maleFemaleButton;
     -webkit-animation-duration: 5s;
+    -moz-animation-duration: 5s;
+    -o-animation-duration: 5s;
     -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
     -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+    -o-animation-delay: .1s;
 }
 
 .female {
@@ -218,9 +244,15 @@ input {
 	vertical-align: middle;
 	width: 60px;
 	height: 37px;
-	-webkit-animation:maleFemaleButton;
+	-webkit-animation: maleFemaleButton;
+	-moz-animation: maleFemaleButton;
+	-o-animation: maleFemaleButton;
     -webkit-animation-duration: 5s;
+    -moz-animation-duration: 5s;
+    -o-animation-duration: 5s;
     -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
 }
 
 .compute .svg path {
@@ -241,6 +273,7 @@ input {
 .step2 .logo{
 	-webkit-transform: scale(0.75);
 	-moz-transform: scale(0.75);
+	-ms-transform: scale(0.75);
 	-o-transform: scale(0.75);
 	transform: scale(0.75);
 	
@@ -248,6 +281,7 @@ input {
 .step2 .user-input {
 	-webkit-transform: translate(-100%, 0);
 	-moz-transform: translate(-100%, 0);
+	-ms-transform: translate(-100%, 0);
 	-o-transform: translate(-100%, 0);
 	transform: translate(-100%, 0);
 }
@@ -285,7 +319,7 @@ input {
 	color: #fff;
 	border-radius: 4px;
 	font-family: 'Fjalla One', sans-serif;
-	-webkit-text-stroke: 0px;
+	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
 	line-height: 40px;
 	padding: 0;
@@ -334,15 +368,17 @@ input {
     left: -11px;
     position: absolute;
     top: 3px;
-    -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     width: 26px;
-    transition: all .3s ease;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
 	-o-transition: all .3s ease;
+    transition: all .3s ease;
 }
 
 .see-guys:before {
@@ -357,8 +393,9 @@ input {
     left: inherit;
     position: absolute;
     top: 3px;
-    -moz-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
     width: 28px;
@@ -375,7 +412,7 @@ input {
 }
 
 .see-girls:hover:before {
-	background: rgba(111,53,111,0.1);
+	/*background: rgba(111,53,111,0.1);*/
 	border-color: #6f356f;	
 	background: -moz-linear-gradient(0deg rgba(111,53,111,0.1) 50%, rgba(0,0,0,0) 51%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left bottom, right top,   color-stop(50%,rgba(111,53,111,0.1)), color-stop(51%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
@@ -406,10 +443,11 @@ input {
 
 .person {
 	position: absolute;
-	transition: all .3s ease;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
 	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 .person a {
 	display: block;
@@ -423,11 +461,12 @@ input {
 }
 .person:hover {
 	z-index: 5;
-	-webkit-backface-visibility: hidden;
-	transform: translateZ(0) scale(1.25, 1.25);
 	-webkit-transform: translateZ(0) scale(1.25, 1.25);
 	-moz-transform: translateZ(0) scale(1.25, 1.25);
+	-ms-transform: translateZ(0) scale(1.25, 1.25);
 	-o-transform: translateZ(0) scale(1.25, 1.25);
+	transform: translateZ(0) scale(1.25, 1.25);
+	-webkit-backface-visibility: hidden;
 }
 
 .person-overlay {
@@ -457,12 +496,17 @@ input {
 	text-align: left;
 	font-size: 25px;
 	margin-left: 7px;
-	-webkit-backface-visibility: hidden;
-	transition: all .3s ease;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
 	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	-webkit-transition-delay: .1s;
+	-moz-transition-delay: .1s;
+	-ms-transition-delay: .1s;
+	-o-transition-delay: .1s;
 	transition-delay: .1s;
+	-webkit-backface-visibility: hidden;
 	line-height: 1;
 }
 .person:hover span {
@@ -472,12 +516,17 @@ input {
 	border: none;
 	background: #fff;
 	height: 7px;
-	width: 0%;
+	width: 0;
 	margin-left: 7px;
-	transition: all .4s ease;
 	-webkit-transition: all .4s ease;
 	-moz-transition: all .4s ease;
+	-ms-transition: all .4s ease;
 	-o-transition: all .4s ease;
+	transition: all .4s ease;
+	-webkit-transition-delay: .1s;
+	-moz-transition-delay: .1s;
+	-ms-transition-delay: .1s;
+	-o-transition-delay: .1s;
 	transition-delay: .1s;
 }
 .person:hover hr {
@@ -493,10 +542,11 @@ input {
 	width: 160px;
 	height: 60px;
 	background: #fe64f8;
-	transition: all .3s ease;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
 	-o-transition: all .3s ease;
+	transition: all .3s ease;
 	border-radius: 5px 0 0 5px;
 	text-align: left;
 	padding-left: 12px;
@@ -520,174 +570,147 @@ input {
 }
 
 .top-transition {
-	transform-origin: 50% 0%;
-	-webkit-transform-origin: 50% 0%;
-	-moz-transform-origin: 50% 0%;
-	-o-transform-origin: 50% 0%;
-	-ms-transform-origin: 50% 0%;
+	-webkit-transform-origin: 50% 0;
+	-moz-transform-origin: 50% 0;
+	-ms-transform-origin: 50% 0;
+	-o-transform-origin: 50% 0;
+	transform-origin: 50% 0;
 }
 
 .left-transition {
-	transform-origin: 0% 50%;
-	-webkit-transform-origin: 0% 50%;
-	-moz-transform-origin: 0% 50%;
-	-o-transform-origin: 0% 50%;
-	-ms-transform-origin: 0% 50%;
+	-webkit-transform-origin: 0 50%;
+	-moz-transform-origin: 0 50%;
+	-ms-transform-origin: 0 50%;
+	-o-transform-origin: 0 50%;
+	transform-origin: 0 50%;
 }
 .right-transition {
-	transform-origin: 100% 50%;
 	-webkit-transform-origin: 100% 50%;
 	-moz-transform-origin: 100% 50%;
-	-o-transform-origin: 100% 50%;
 	-ms-transform-origin: 100% 50%;
+	-o-transform-origin: 100% 50%;
+	transform-origin: 100% 50%;
 }
 
 .top-transition.left-transition {
-	transform-origin: 0% 0%;
-	-webkit-transform-origin: 0% 0%;
-	-moz-transform-origin: 0% 0%;
-	-o-transform-origin: 0% 0%;
-	-ms-transform-origin: 0% 0%;	
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;	
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
 }
 
 .top-transition.right-transition {
-	transform-origin: 100% 0%;
-	-webkit-transform-origin: 100% 0%;
-	-moz-transform-origin: 100% 0%;
-	-o-transform-origin: 100% 0%;
-	-ms-transform-origin: 100% 0%;	
+	-webkit-transform-origin: 100% 0;
+	-moz-transform-origin: 100% 0;
+	-ms-transform-origin: 100% 0;	
+	-o-transform-origin: 100% 0;
+	transform-origin: 100% 0;
 }
-
-/*@-webkit-keyframes compute-button {
-    0% {
-        -webkit-transform: translateY(-82px);
-    }
-    100% {
-        -webkit-transform: translateY(0px);
-    }
-}*/
 
 @keyframes computeButton{
   0% {
-    transform:  translateY(0px)  ;
+    transform:  translateY(0px);
   }
   7% {
-    transform:  translateY(-82px)  ;
+    transform:  translateY(-82px);
   }
   60% {
-    transform:  translateY(-82px)  ;
+    transform:  translateY(-82px);
   }
   67% {
-    transform:  translateY(0px)  ;
+    transform:  translateY(0px);
   }
   100% {
-    transform:  translateY(0px)  ;
+    transform:  translateY(0px);
   }
 }
 
 @-moz-keyframes computeButton{
   0% {
-    -moz-transform:  translateY(0px)  ;
+    -moz-transform:  translateY(0px);
   }
   7% {
-    -moz-transform:  translateY(-82px)  ;
+    -moz-transform:  translateY(-82px);
   }
   60% {
-    -moz-transform:  translateY(-82px)  ;
+    -moz-transform:  translateY(-82px);
   }
   67% {
-    -moz-transform:  translateY(0px)  ;
+    -moz-transform:  translateY(0px);
   }
   100% {
-    -moz-transform:  translateY(0px)  ;
+    -moz-transform:  translateY(0px);
   }
 }
 
 @-webkit-keyframes computeButton {
   0% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   7% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   60% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   67% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   100% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
 }
 
 @-o-keyframes computeButton {
   0% {
-    -o-transform:  translateY(0px)  ;
+    -o-transform:  translateY(0px);
   }
   7% {
-    -o-transform:  translateY(-82px)  ;
+    -o-transform:  translateY(-82px);
   }
   60% {
-    -o-transform:  translateY(-82px)  ;
+    -o-transform:  translateY(-82px);
   }
   67% {
-    -o-transform:  translateY(0px)  ;
+    -o-transform:  translateY(0px);
   }
   100% {
-    -o-transform:  translateY(0px)  ;
-  }
-}
-
-@-ms-keyframes computeButton {
-  0% {
-    -ms-transform:  translateY(0px)  ;
-  }
-  7% {
-    -ms-transform:  translateY(-82px)  ;
-  }
-  60% {
-    -ms-transform:  translateY(-82px)  ;
-  }
-  67% {
-    -ms-transform:  translateY(0px)  ;
-  }
-  100% {
-    -ms-transform:  translateY(0px)  ;
+    -o-transform:  translateY(0px);
   }
 }
 
 @-webkit-keyframes maleFemaleButton {
   0% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   5% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   60% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   67% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   100% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
 }
-@-keyframes maleFemaleButton {
+@keyframes maleFemaleButton {
   0% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   5% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   60% {
-    -webkit-transform:  translateY(-82px)  ;
+    -webkit-transform:  translateY(-82px);
   }
   67% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
   100% {
-    -webkit-transform:  translateY(0px)  ;
+    -webkit-transform:  translateY(0px);
   }
 }
