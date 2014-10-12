@@ -279,15 +279,6 @@
         return fuzzyset;
     };
 
-    var root = this;
-    // Export the fuzzyset object for **CommonJS**, with backwards-compatibility
-    // for the old `require()` API. If we're not in CommonJS, add `_` to the
-    // global object.
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = FuzzySet;
-        // root.FuzzySet = FuzzySet;
-    } else {
-        root.FuzzySet = FuzzySet;
-    }
+    module.exports = FuzzySet;
 
 })();
