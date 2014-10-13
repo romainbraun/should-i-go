@@ -1,9 +1,11 @@
 /*globals require, module, Marka */
 (function () {
 	'use strict';
+
+	require('./lib/jquery.unveil.js');
+	require('./lib/marka.min.js');
+	
 	var $ = require('jquery');
-	require('./jquery.unveil.js');
-	require('./marka.min.js');
 
 	function computePositions(peopleLength) {
 		var windowWidth = $(window).width(),

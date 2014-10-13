@@ -1,18 +1,19 @@
 /*globals require, module */
 (function () {
 	'use strict';
-	var $				= require('jquery'),
-		maleNames		= {},
-		femaleNames		= {},
-		diacriticsTable	= require('./resources/diacritics.json'),
-		diacriticsMap	= {},
-		maleCounter		= 0,
+	var	diacriticsTable	= require('./resources/diacritics.json'),
+		FuzzySet		= require('./lib/fuzzyset.js'),
+		$				= require('jquery');
+
+	var diacriticsMap	= {},
 		femaleCounter	= 0,
 		totalCounter	= 0,
-		maleFuzzy		= null,
+		femaleNames		= {},
+		maleCounter		= 0,
 		femaleFuzzy		= null,
-		FuzzySet		= require('./fuzzyset.js'),
-		peopleTable		= [];
+		peopleTable		= [],
+		maleNames		= {},
+		maleFuzzy		= null;
 
 
 	function prepareDiacritics() {

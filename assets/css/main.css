@@ -70,6 +70,22 @@ h1 {
 
 
 
+/*Facebook login*/
+.facebook-login {
+	display: none;	
+}
+.step0 .facebook-login{
+	display: block;
+}
+
+
+
+
+
+
+
+
+
 
 /*LOGO*/
 .logo {
@@ -122,7 +138,12 @@ h1 {
 
 /*USER INPUT*/
 
+.step0 .user-input{
+	opacity: 0;
+}
+
 .user-input {
+	opacity: 1;
 	position: relative;
 	transition: transform .3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
@@ -225,7 +246,40 @@ input {
 .step2 .user-input {
 	transform: translate(-100%, 0);
 }
-
+.results .event-name {
+	display: block;
+	margin: 0 auto;
+	width: 500px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	font-size: 16px;
+  	text-transform: uppercase;
+}
+.results .white-line {
+	display: inline-block;
+	vertical-align: middle;
+	height: 2px;
+	width: 50px;
+	margin: 0 10px;
+	background: #fff;
+}
+.results .event-date-block {
+	border: 1px solid #fff;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 8px 0;
+	width: 48px;
+	height: 32px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.results .event-date-block span {
+	font-size: 14px;
+	display: block;
+	margin: 0 auto;
+	text-transform: uppercase;
+}
 .results .male-icon {
 	fill: #3c9afe;
 }
@@ -360,7 +414,7 @@ input {
 
 .overlay {
 	position: absolute;
-	/*display: none;*/
+	display: none;
 	width: 100%;
 	top: 0;
 	overflow: hidden;

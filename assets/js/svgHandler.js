@@ -1,6 +1,7 @@
 /*globals require, module */
 (function () {
 	'use strict';
+	
 	var $ = require('jquery');
 
 	function replaceAllSVGs() {

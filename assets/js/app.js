@@ -1,20 +1,26 @@
 /*globals FB, require */
 (function () {
 	'use strict';
-	var facebookAPI 		= require('./facebook.js'),
-		facebookCredentials = require('./facebookCredentials.json'),
-		SVG 				= require('./svgHandler.js'),
-		Overlays 			= require('./overlays.js'),
+	var	facebookCredentials = require('./resources/facebookCredentials.json'),
+		facebookAPI 		= require('./facebook.js'),
 		Algorithm 			= require('./algorithm.js'),
+		Overlays 			= require('./overlays.js'),
+		View				= require('./view.js'),
+		SVG 				= require('./svgHandler.js'),
 		$ 					= require('jquery');
 
 
 	function fbLoaded() {
-		facebookAPI.init(function () {
-			FB.api('/me', function() {
-				$('body').addClass('show');
 
-				console.log("%cThank you for looking into my code, stranger! Unfortunately the javascript is minified. You can get a closer look at how the machine is working on %s. Feel free to fork me!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
+		facebookAPI.init(fbCallback);
+	}
+
+	function fbCallback(connected) {
+		if (connected) {
+			FB.api('/me', function() {
+				View.goTo(1);
+				console.log("%cThank you for looking into my code, stranger! Feel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
+				$('body').addClass('show');
 
 
 
@@ -27,7 +33,9 @@
 				// });      	
 		  //     }, 1000);
 		    });
-		});
+		} else {
+			$('body').addClass('show');
+		}
 	}
 
 	window.fbAsyncInit = function() {
@@ -41,19 +49,28 @@
 		fbLoaded();
 	};
 
-	$('.compute').click(function () {
-		var eventId = $('input').val();
-
-		eventId = eventId.substring(eventId.indexOf('events/')+7);
-		eventId = eventId.substring(eventId.indexOf('/'), 0);
-		
-		facebookAPI.getEventInfos(eventId, function (response) {
-			$('.step1').removeClass().addClass('step2');
-			setTimeout(function () {
-				Algorithm.compute(response.data);
-			}, 300);
+	function bindLinks() {
+		$('#fb-login').click(function () {
+			facebookAPI.showDialog(fbCallback);
 		});
-	});
 
+		$('.compute').click(function () {
+			var eventId = $('input').val();
+
+			eventId = eventId.substring(eventId.indexOf('events/')+7);
+			eventId = eventId.substring(eventId.indexOf('/'), 0);
+			
+			facebookAPI.getEventInfos(eventId, function (response) {
+				View.displayEventInfos(response);
+				View.goTo(2);
+				// setTimeout(function () {
+				// 	Algorithm.compute(response.data);
+				// }, 300);
+			});
+		});
+		
+	}
+
+	bindLinks();
 	SVG.init();
 })();

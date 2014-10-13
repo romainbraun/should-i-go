@@ -1,23 +1,13 @@
-/*globals FB, module, checkLoginState */
+/*globals FB, module */
 (function () {
 	'use strict';
 	function statusChangeCallback(response, callback) {
-		// console.log('statusChangeCallback');
-		// console.log(response);
 		if (response.status === 'connected') {
-			callback();
+			callback(true);
 		} else if (response.status === 'not_authorized') {
-			// console.log('yolo');
-			FB.login(function(response) {
-			   // console.log(response);
-			   callback();
-			 }, {scope: 'public_profile, user_events', });
+			callback(false);
 		} else {
-			// console.log('yolodouble');
-			FB.login(function(response) {
-			   // console.log(response);
-			   callback();
-			 }, {scope: 'public_profile, user_events'});
+			callback(false);
 		}
 	}
 
@@ -33,13 +23,28 @@
 		});
 	};
 
-	module.exports.getEventInfos = function (eventId, callback) {
+	module.exports.getEventPeople = function (eventId, callback) {
 		FB.api(
 		    "/v2.1/" + eventId + "/attending/?fields=first_name,last_name,picture.height(200).width(200).type(large)",
 		    function (response) {
-		    	// console.log(response);
 			    callback(response);
 		    }
 		);
+	};
+
+	module.exports.getEventInfos = function (eventId, callback) {
+		FB.api(
+		    "/v2.1/" + eventId + "?fields=name,start_time",
+		    function (response) {
+			    callback(response);
+		    }
+		);
+	};
+
+	module.exports.showDialog = function (callback) {
+		FB.login(function(response) {
+			console.log(response);
+			statusChangeCallback(response, callback);
+		}, {scope: 'public_profile, user_events', });
 	};
 })();

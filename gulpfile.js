@@ -13,7 +13,8 @@
       watch         = require('gulp-watch'),
       minifyCSS     = require('gulp-minify-css'),
       autoprefixer  = require('gulp-autoprefixer'),
-      size          = require('gulp-filesize');
+      size          = require('gulp-filesize'),
+      notify        = require("gulp-notify");
 
   // var aws = JSON.parse(awsInfos);
 
@@ -40,7 +41,16 @@
         .pipe(uglify())
         .pipe(size())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('./assets/js/dist/'));
+        .pipe(gulp.dest('./assets/js/dist/'))
+        .pipe(notify({
+          "title": "Should I Go?",
+          "subtitle": "Gulp Process",
+          "message": '<%= file.relative %> was successfully minified!',
+          "sound": "Pop", // case sensitive
+          // "icon": path.join(__dirname, "gulp.png"), // case sensitive
+          "onLast": true,
+          // "wait": true
+      }));
     };
 
     return bundle();
@@ -53,7 +63,16 @@
         cascade: false
       }))
       .pipe(minifyCSS({keepSpecialComments: 0, relativeTo: './assets/css/', processImport: true}))
-      .pipe(gulp.dest('./assets/css/dist/'));
+      .pipe(gulp.dest('./assets/css/dist/'))
+      .pipe(notify({
+          "title": "Should I Go?",
+          "subtitle": "Gulp Process",
+          "message": '<%= file.relative %> was successfully minified!',
+          "sound": "Pop", // case sensitive
+          // "icon": path.join(__dirname, "gulp.png"), // case sensitive
+          "onLast": true,
+          // "wait": true
+      }));
   });
 
   gulp.task('watch', function () {
