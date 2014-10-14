@@ -18,6 +18,7 @@
 			rest 		= windowWidth % 200,
 			itemWidth 	= 0;
 
+		// Adapting the size of the blocks if the screen size isn't a perfect multiple of 200
 		if (rest) {
 			itemWidth = Math.floor(windowWidth / columns);
 		} else {
@@ -25,8 +26,10 @@
 		}
 
 		$('.person').each(function (index) {
-			console.log(index % columns === columns - 1);
+			// Placing blocks
 			$(this).css({width: itemWidth, height: itemWidth, left: (index % columns) * itemWidth, top: Math.floor(index / columns) * itemWidth});
+
+			// Adding specific classes if the blocks are on the sides / top / bottom / corners of the grid
 			$(this).removeClass('top-transition left-transition right-transition');
 			if (Math.floor(index / columns) === 0) {
 				$(this).addClass('top-transition');
@@ -38,10 +41,11 @@
 			}
 		});
 
+		// Adding the total height to the container so we can use the body scrolling
 		$('.guys-overlay').css({height:Math.floor(peopleLength / columns) * itemWidth});
-
+		// Enabling body scrolling
 		$('body').css({overflow:'scroll'});
-
+		// Enabling lazy loading
 		$('.person img').unveil(500);
 	}
 
