@@ -9,14 +9,23 @@
 		SVG 				= require('./svgHandler.js'),
 		$ 					= require('jquery');
 
-
+	/**
+	 * Called on facebook init
+	 * @return {none}
+	 */
 	function fbLoaded() {
-
+		// First let's see if our user is logged into our app
 		facebookAPI.init(fbCallback);
 	}
 
+	/**
+	 * Callback from fbLoginStatus
+	 * @param  {Boolean} connected
+	 * @return {none}
+	 */
 	function fbCallback(connected) {
 		if (connected) {
+			// If the user is logged in let's switch to step 1
 			FB.api('/me', function() {
 				View.goTo(1);
 				console.log("%cThank you for looking into my code, stranger! Feel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
@@ -34,10 +43,15 @@
 		  //     }, 1000);
 		    });
 		} else {
+			// Otherwise let's show him the login button
 			$('body').addClass('show');
 		}
 	}
 
+	/**
+	 * Facebook init
+	 * @return {none}
+	 */
 	window.fbAsyncInit = function() {
 		FB.init({
 			appId      : facebookCredentials.localAppId,
@@ -49,23 +63,38 @@
 		fbLoaded();
 	};
 
+	/**
+	 * Interface binding
+	 * @return {none}
+	 */
 	function bindLinks() {
+		// Facebook login
 		$('#fb-login').click(function () {
 			facebookAPI.showDialog(fbCallback);
 		});
 
+		// Compute button
 		$('.compute').click(function () {
 			var eventId = $('input').val();
 
+			// Getting the eventId from the URL
 			eventId = eventId.substring(eventId.indexOf('events/')+7);
 			eventId = eventId.substring(eventId.indexOf('/'), 0);
 			
+			// Fetching the basic infos from the event (date, name)
 			facebookAPI.getEventInfos(eventId, function (response) {
+				// Displaying the basic infos and switching to step 2
 				View.displayEventInfos(response);
 				View.goTo(2);
-				// setTimeout(function () {
-				// 	Algorithm.compute(response.data);
-				// }, 300);
+
+				// Fetching the people invited to the event 
+				facebookAPI.getEventPeople(eventId, function (response) {
+					// Computing ratio
+					Algorithm.compute(response.data, function (boyPercent, girlPercent) {
+						// Displaying the results
+						View.displayRatio(boyPercent, girlPercent);
+					});
+				});
 			});
 		});
 		

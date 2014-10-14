@@ -15,7 +15,10 @@
 		maleNames		= {},
 		maleFuzzy		= null;
 
-
+	/**
+	 * Preparing the diacritics table
+	 * @return {none}
+	 */
 	function prepareDiacritics() {
 		for (var i=0; i < diacriticsTable.length; i++){
 			var letters = diacriticsTable[i].letters.split("");
@@ -25,14 +28,24 @@
 		}
 	}
 
-	// "what?" version ... http://jsperf.com/diacritics/12
-	// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
+	/**
+	 * Replacing special characters
+	 * @param  {String} str
+	 * @return {String}
+	 */
 	function removeDiacritics (str) {
+		// "what?" version ... http://jsperf.com/diacritics/12
+		// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
 		return str.replace(/[^\u0000-\u007E]/g, function(a){
 			return diacriticsMap[a] || a;
 		});
 	}
 
+	/**
+	 * Fetching JSON files containing male and female names
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	function getNames(callback) {
 		$.getJSON("assets/js/resources/names.males.json", function (data) {
 			maleNames = data.males;
@@ -43,6 +56,12 @@
 		});
 	}
 
+	/**
+	 * Looking for a match in the appropriate table (male or female)
+	 * @param  {Int} i
+	 * @param  {Table} correspondingTable
+	 * @return {Boolean}
+	 */
 	function searchForCorrespondance(i, correspondingTable) {
 		for (var j=0, length = correspondingTable.length; j < length; j++) {
 			totalCounter++;
@@ -53,7 +72,13 @@
 		return false;
 	}
 
-	function checkRatio(people) {
+	/**
+	 * Browsing the list of people invited, normalize their names, and search for correspondance
+	 * @param  {Table}   people
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
+	function checkRatio(people, callback) {
 		var correspondingMaleTable		= "",
 			correspondingFemaleTable	= "",
 			maleFound					= false,
@@ -96,19 +121,25 @@
 				}
 			}
 		}
-		console.log(maleCounter, "males", femaleCounter, "females");
-		console.log("total iterations :",totalCounter);
-		console.log('success :',femaleCounter+maleCounter,'people identified out of',people.length,":",(femaleCounter+maleCounter)*100/peopleLength,"% success,",peopleLength-(femaleCounter+maleCounter),"unidentified weirdos");
-		// console.log("weird guys", weirdGuys);
-		// displayResults();
+
+		callback(
+			Math.round(maleCounter / (femaleCounter + maleCounter) * 100), 
+			Math.round(femaleCounter / (femaleCounter + maleCounter) * 100)
+		);
 	}
 
-	module.exports.compute = function (people) {
+	/**
+	 * "public" function starting the engine
+	 * @param  {Table}   people
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
+	module.exports.compute = function (people, callback) {
 
 		prepareDiacritics();
 
 		getNames(function () {
-			checkRatio(people);
+			checkRatio(people, callback);
 		});
 	};
 })();

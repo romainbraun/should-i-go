@@ -19,7 +19,8 @@
     "gulp-minify-css": "^0.3.10",
     "gulp-notify": "^2.0.0",
     "gulp-watch": "^1.0.7",
-    "jquery": "^2.1.1"
+    "jquery": "^2.1.1",
+    "raf": "^2.0.4"
   },
   "repository": {
     "type": "git",

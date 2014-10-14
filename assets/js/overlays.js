@@ -7,19 +7,22 @@
 	
 	var $ = require('jquery');
 
+	/**
+	 * Placing the different blocks on the grid depending on the screen size
+	 * @param  {Int} peopleLength
+	 * @return {none}
+	 */
 	function computePositions(peopleLength) {
 		var windowWidth = $(window).width(),
-			columns	= Math.ceil(windowWidth / 200),
-			rest = windowWidth % 200,
-			itemWidth = 0;
+			columns		= Math.ceil(windowWidth / 200),
+			rest 		= windowWidth % 200,
+			itemWidth 	= 0;
 
 		if (rest) {
 			itemWidth = Math.floor(windowWidth / columns);
 		} else {
 			itemWidth = 200;
 		}
-
-		console.log('windowWidth', windowWidth, 'columns', columns, 'rest', rest, 'itemWidth', itemWidth);
 
 		$('.person').each(function (index) {
 			console.log(index % columns === columns - 1);
@@ -42,6 +45,10 @@
 		$('.person img').unveil(500);
 	}
 
+	/**
+	 * Creates the back buttons using Marka.js
+	 * @return {none}
+	 */
 	function createButtons() {
 		var m = new Marka('.guys-overlay i');
 		m.set('times');
@@ -56,6 +63,11 @@
 		});
 	}
 
+	/**
+	 * "public" function populating the grids with boys and girls
+	 * @param  {Object} people
+	 * @return {none}
+	 */
 	module.exports.populate = function (people) {
 		// @TODO: Tweak this so it makes the difference between dudes and girls!
 		var overlay = document.getElementById('guys-overlay'),

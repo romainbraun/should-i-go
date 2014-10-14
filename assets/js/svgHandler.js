@@ -4,6 +4,10 @@
 	
 	var $ = require('jquery');
 
+	/**
+	 * Replace SVG files with inline SVG for further manipulation / animation
+	 * @return {none}
+	 */
 	function replaceAllSVGs() {
 		$('img.svg').each(function(){
 			var $img = $(this),
@@ -35,6 +39,10 @@
 		});
 	}
 
+	/**
+	 * "public" initiation function
+	 * @return {none}
+	 */
 	module.exports.init = function () {
 		replaceAllSVGs();
 	};

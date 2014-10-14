@@ -1,6 +1,13 @@
 /*globals FB, module */
 (function () {
 	'use strict';
+
+	/**
+	 * Callback on facebook status change
+	 * @param  {Object}   response
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	function statusChangeCallback(response, callback) {
 		if (response.status === 'connected') {
 			callback(true);
@@ -11,18 +18,23 @@
 		}
 	}
 
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-	}
-
+	/**
+	 * Checking user facebook status
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	module.exports.init = function (callback) {
 		FB.getLoginStatus(function(response) {
 			statusChangeCallback(response, callback);
 		});
 	};
 
+	/**
+	 * Fetching people invited to the event
+	 * @param  {Int}   eventId
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	module.exports.getEventPeople = function (eventId, callback) {
 		FB.api(
 		    "/v2.1/" + eventId + "/attending/?fields=first_name,last_name,picture.height(200).width(200).type(large)",
@@ -32,6 +44,12 @@
 		);
 	};
 
+	/**
+	 * Fetching basic event infos
+	 * @param  {Int}   eventId
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	module.exports.getEventInfos = function (eventId, callback) {
 		FB.api(
 		    "/v2.1/" + eventId + "?fields=name,start_time",
@@ -41,6 +59,11 @@
 		);
 	};
 
+	/**
+	 * Displaying the facebook login dialog
+	 * @param  {Function} callback
+	 * @return {none}
+	 */
 	module.exports.showDialog = function (callback) {
 		FB.login(function(response) {
 			console.log(response);
