@@ -124,7 +124,9 @@
 
 		callback(
 			Math.round(maleCounter / (femaleCounter + maleCounter) * 100), 
-			Math.round(femaleCounter / (femaleCounter + maleCounter) * 100)
+			Math.round(femaleCounter / (femaleCounter + maleCounter) * 100),
+			maleCounter,
+			femaleCounter
 		);
 	}
 

@@ -14,7 +14,10 @@
       minifyCSS     = require('gulp-minify-css'),
       autoprefixer  = require('gulp-autoprefixer'),
       size          = require('gulp-filesize'),
-      notify        = require("gulp-notify");
+      mocha         = require('gulp-mocha'),
+      lcov          = require('mocha-lcov-reporter'),
+      notify        = require("gulp-notify"),
+      fs            = require('fs');
 
   // var aws = JSON.parse(awsInfos);
 
@@ -83,6 +86,15 @@
           gulp.start('css', cb);
       });
   });
+
+  gulp.task('test', function () {
+    var test = fs.createWriteStream('./test.lcov');
+    return gulp.src('./assets/js/test/test.js', {read: false})
+        // .pipe(mocha({reporter: 'spec'}));
+        .pipe(mocha({reporter: 'mocha-lcov-reporter'}))
+        .pipe(test);
+        // .pipe(gulp.dest('./assets/js/test/test.lcov'));
+});
 
 
   gulp.task('publish', function() {

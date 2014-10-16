@@ -61,4 +61,15 @@
 		percentAnimation = raf(animatePercent);
 	};
 
+	/**
+	 * Insert boy/girl count in the appropriate UI buttons
+	 * @param  {Int} boys
+	 * @param  {Int} girls
+	 * @return {none}
+	 */
+	module.exports.displayButtons = function (boys, girls) {
+		$('.see-girls').html(girls + " chicks");
+		$('.see-guys').html(boys + " guys");
+	};
+
 })();

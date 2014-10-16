@@ -90,9 +90,10 @@
 				// Fetching the people invited to the event 
 				facebookAPI.getEventPeople(eventId, function (response) {
 					// Computing ratio
-					Algorithm.compute(response.data, function (boyPercent, girlPercent) {
+					Algorithm.compute(response.data, function (boyPercent, girlPercent, boyCount, girlCount) {
 						// Displaying the results
 						View.displayRatio(boyPercent, girlPercent);
+						View.displayButtons(boyCount, girlCount);
 					});
 				});
 			});
