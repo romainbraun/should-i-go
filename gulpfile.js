@@ -17,6 +17,8 @@
       mocha         = require('gulp-mocha'),
       lcov          = require('mocha-lcov-reporter'),
       notify        = require("gulp-notify"),
+      tap           = require("gulp-tap"),
+      istanbul      = require("gulp-istanbul"),
       fs            = require('fs');
 
   // var aws = JSON.parse(awsInfos);
@@ -88,11 +90,22 @@
   });
 
   gulp.task('test', function () {
-    var test = fs.createWriteStream('./test.lcov');
-    return gulp.src('./assets/js/test/test.js', {read: false})
-        // .pipe(mocha({reporter: 'spec'}));
-        .pipe(mocha({reporter: 'mocha-lcov-reporter'}))
-        .pipe(test);
+    return gulp.src('./assets/**/js/*.js')
+      .pipe(istanbul())
+      // .pipe(tap(function(f) {
+      //   require(f.path);
+      // }))
+      .on('finish', function () {
+        gulp.src('./assets/js/test/test.js')
+          .pipe(mocha({reporter: 'spec'}))
+          .pipe(istanbul.writeReports({
+            dir: './assets/unit-test-coverage',
+            reporters: [ 'lcov' ],
+            reportOpts: { dir: './assets/unit-test-coverage'}
+          }));
+      });
+        // .pipe(mocha({reporter: 'mocha-lcov-reporter'}))
+        // .pipe(test);
         // .pipe(gulp.dest('./assets/js/test/test.lcov'));
 });
 
