@@ -91,10 +91,7 @@
 
   gulp.task('test', function () {
     return gulp.src('./assets/**/js/*.js')
-      .pipe(istanbul())
-      // .pipe(tap(function(f) {
-      //   require(f.path);
-      // }))
+      .pipe(istanbul({includeUntested: true}))
       .on('finish', function () {
         gulp.src('./assets/js/test/test.js')
           .pipe(mocha({reporter: 'spec'}))
@@ -104,10 +101,7 @@
             reportOpts: { dir: './assets/unit-test-coverage'}
           }));
       });
-        // .pipe(mocha({reporter: 'mocha-lcov-reporter'}))
-        // .pipe(test);
-        // .pipe(gulp.dest('./assets/js/test/test.lcov'));
-});
+  });
 
 
   gulp.task('publish', function() {
