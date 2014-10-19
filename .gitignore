@@ -2,3 +2,4 @@ aws.json
 .htpasswd
 passwords.txt
 node_modules/
+assets/unit-test-coverage/

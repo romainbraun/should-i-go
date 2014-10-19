@@ -50,7 +50,7 @@
         .pipe(notify({
           "title": "Should I Go?",
           "subtitle": "Gulp Process",
-          "message": '<%= file.relative %> was successfully minified!',
+          "message": 'Yolo! <%= file.relative %> was successfully minified!',
           "sound": "Pop", // case sensitive
           // "icon": path.join(__dirname, "gulp.png"), // case sensitive
           "onLast": true,

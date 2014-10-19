@@ -159,6 +159,7 @@ input {
 	font-family: 'Fjalla One', sans-serif;
 	-webkit-text-stroke: 0;
 	-webkit-font-smoothing: antialiased;
+	outline: none;
 }
 .compute {
 	width: 320px;

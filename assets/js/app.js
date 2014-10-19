@@ -5,6 +5,7 @@
 		facebookAPI 		= require('./facebook.js'),
 		Algorithm 			= require('./algorithm.js'),
 		Overlays 			= require('./overlays.js'),
+		Utils				= require('./utils.js'),
 		View				= require('./view.js'),
 		SVG 				= require('./svgHandler.js'),
 		$ 					= require('jquery');
@@ -75,11 +76,12 @@
 
 		// Compute button
 		$('.compute').click(function () {
-			var eventId = $('input').val();
+			var eventId = Utils.getEventId($('input').val());
 
-			// Getting the eventId from the URL
-			eventId = eventId.substring(eventId.indexOf('events/')+7);
-			eventId = eventId.substring(eventId.indexOf('/'), 0);
+			if (!eventId) {
+				console.log('Please make sure whatever you provided contains the event URL.');
+				return;
+			}
 			
 			// Fetching the basic infos from the event (date, name)
 			facebookAPI.getEventInfos(eventId, function (response) {
