@@ -3,18 +3,16 @@
 	'use strict';
 	var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-
-	// This is using ECMAScript 5.1's Internationalization API. This will fail on <IE11. And it fails on Node! Let's go with the old fashioned way
-	// var formatter = new Intl.DateTimeFormat("en-us", { month: "short" });
-
 	/**
 	 * Return a short litteral version of the month from the date provided
 	 * @param  {Date} date
 	 * @return {String}
 	 */
 	module.exports.getMonth = function (date) {
+		// I started using ECMAScript 5.1's Intl implementation, but it's not implemented in Node, 
+		// making unit tests impossible for this part, unless you have a custom build of node. 
+		// So I went the old fashioned way. Hopefully Node will implement this someday!
 		return monthNames[date.getMonth()];
-		// return formatter.format(date);
 	};
 
 	/**

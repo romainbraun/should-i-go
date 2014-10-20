@@ -90,7 +90,7 @@
   });
 
   gulp.task('test', function () {
-    return gulp.src('./assets/**/js/*.js')
+    return gulp.src('./assets/js/*.js')
       .pipe(istanbul({includeUntested: true}))
       .on('finish', function () {
         gulp.src('./assets/js/test/test.js')
