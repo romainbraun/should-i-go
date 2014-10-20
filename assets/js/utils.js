@@ -1,7 +1,9 @@
 /*globals module */
 (function () {
 	'use strict';
-	var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var monthNames 		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+		diacriticsTable	= require('./resources/diacritics.json'),
+		diacriticsMap	= [];
 
 	/**
 	 * Return a short litteral version of the month from the date provided
@@ -23,6 +25,32 @@
 	module.exports.getEventId = function (url) {
 		var re = /[\D]*([\d]*)/g;
 		return re.exec(url)[1] || false;
+	};
+
+	/**
+	 * Preparing the diacritics table
+	 * @return {none}
+	 */
+	module.exports.prepareDiacritics = function () {
+		for (var i=0; i < diacriticsTable.length; i++){
+			var letters = diacriticsTable[i].letters.split("");
+			for (var j=0; j < letters.length ; j++){
+				diacriticsMap[letters[j]] = diacriticsTable[i].base;
+			}
+		}
+	};
+
+	/**
+	 * Replacing special characters
+	 * @param  {String} str
+	 * @return {String}
+	 */
+	module.exports.removeDiacritics = function (str) {
+		// "what?" version ... http://jsperf.com/diacritics/12
+		// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
+		return str.replace(/[^\u0000-\u007E]/g, function(a){
+			return diacriticsMap[a] || a;
+		});
 	};
 
 })();

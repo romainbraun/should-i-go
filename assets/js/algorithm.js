@@ -1,12 +1,11 @@
 /*globals require, module */
 (function () {
 	'use strict';
-	var	diacriticsTable	= require('./resources/diacritics.json'),
-		FuzzySet		= require('./lib/fuzzyset.js'),
+	var FuzzySet		= require('./lib/fuzzyset.js'),
+		Utils			= require('./utils.js'),
 		$				= require('jquery');
 
-	var diacriticsMap	= {},
-		femaleCounter	= 0,
+	var femaleCounter	= 0,
 		totalCounter	= 0,
 		femaleNames		= {},
 		maleCounter		= 0,
@@ -14,32 +13,6 @@
 		peopleTable		= [],
 		maleNames		= {},
 		maleFuzzy		= null;
-
-	/**
-	 * Preparing the diacritics table
-	 * @return {none}
-	 */
-	function prepareDiacritics() {
-		for (var i=0; i < diacriticsTable.length; i++){
-			var letters = diacriticsTable[i].letters.split("");
-			for (var j=0; j < letters.length ; j++){
-				diacriticsMap[letters[j]] = diacriticsTable[i].base;
-			}
-		}
-	}
-
-	/**
-	 * Replacing special characters
-	 * @param  {String} str
-	 * @return {String}
-	 */
-	function removeDiacritics (str) {
-		// "what?" version ... http://jsperf.com/diacritics/12
-		// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
-		return str.replace(/[^\u0000-\u007E]/g, function(a){
-			return diacriticsMap[a] || a;
-		});
-	}
 
 	/**
 	 * Fetching JSON files containing male and female names
@@ -65,7 +38,7 @@
 	function searchForCorrespondance(i, correspondingTable) {
 		for (var j=0, length = correspondingTable.length; j < length; j++) {
 			totalCounter++;
-			if (peopleTable[i].first_name === removeDiacritics(correspondingTable[j].toUpperCase())) {
+			if (peopleTable[i].first_name === Utils.removeDiacritics(correspondingTable[j].toUpperCase())) {
 				return true;
 			}
 		}
@@ -95,7 +68,7 @@
 			}
 			maleFound					= false;
 			femaleFound					= false;
-			peopleTable[i].first_name	= removeDiacritics(peopleTable[i].first_name.toUpperCase()); //Getting rid of weird characters.
+			peopleTable[i].first_name	= Utils.removeDiacritics(peopleTable[i].first_name.toUpperCase()); //Getting rid of weird characters.
 			correspondingMaleTable		= maleNames[peopleTable[i].first_name.substring(0,1)];
 			correspondingFemaleTable	= femaleNames[peopleTable[i].first_name.substring(0,1)];
 
@@ -138,7 +111,7 @@
 	 */
 	module.exports.compute = function (people, callback) {
 
-		prepareDiacritics();
+		Utils.prepareDiacritics();
 
 		getNames(function () {
 			checkRatio(people, callback);

@@ -26,3 +26,12 @@ describe('Utils', function(){
     });
   });
 });
+
+describe('Utils', function(){
+  describe('removeDiacritics', function(){
+  	utils.prepareDiacritics();
+    it('should return a normalized string', function(){
+      assert.strictEqual('Romain', utils.removeDiacritics('Römáìñ'));
+    });
+  });
+});
