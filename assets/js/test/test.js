@@ -35,3 +35,12 @@ describe('Utils', function(){
     });
   });
 });
+
+describe('Utils', function(){
+  describe('searchForCorrespondance', function(){
+    it('should find a correspondance', function(){
+      assert.strictEqual(true, utils.searchForCorrespondance('ROMAIN', ['Römaiń', 'Cyril']));
+      assert.strictEqual(false, utils.searchForCorrespondance('ROMAINN', ['Römaiń', 'Cyril']));
+    });
+  });
+});

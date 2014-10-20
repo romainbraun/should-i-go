@@ -6,6 +6,19 @@
 		diacriticsMap	= [];
 
 	/**
+	 * Replacing special characters
+	 * @param  {String} str
+	 * @return {String}
+	 */
+	function removeDiacritics(str) {
+		// "what?" version ... http://jsperf.com/diacritics/12
+		// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
+		return str.replace(/[^\u0000-\u007E]/g, function(a){
+			return diacriticsMap[a] || a;
+		});
+	}
+
+	/**
 	 * Return a short litteral version of the month from the date provided
 	 * @param  {Date} date
 	 * @return {String}
@@ -40,17 +53,21 @@
 		}
 	};
 
+	module.exports.removeDiacritics = removeDiacritics;
+
 	/**
-	 * Replacing special characters
-	 * @param  {String} str
-	 * @return {String}
+	 * Looking for a match in the appropriate table (male or female)
+	 * @param  {Int} i
+	 * @param  {Table} correspondingTable
+	 * @return {Boolean}
 	 */
-	module.exports.removeDiacritics = function (str) {
-		// "what?" version ... http://jsperf.com/diacritics/12
-		// Might be a slightly faster version with a newer revision. We're talking milliseconds though.
-		return str.replace(/[^\u0000-\u007E]/g, function(a){
-			return diacriticsMap[a] || a;
-		});
+	module.exports.searchForCorrespondance = function (name, correspondingTable) {
+		for (var j=0, length = correspondingTable.length; j < length; j++) {
+			if (name === removeDiacritics(correspondingTable[j].toUpperCase())) {
+				return true;
+			}
+		}
+		return false;
 	};
 
 })();

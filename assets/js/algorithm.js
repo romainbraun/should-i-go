@@ -6,11 +6,9 @@
 		$				= require('jquery');
 
 	var femaleCounter	= 0,
-		totalCounter	= 0,
 		femaleNames		= {},
 		maleCounter		= 0,
 		femaleFuzzy		= null,
-		peopleTable		= [],
 		maleNames		= {},
 		maleFuzzy		= null;
 
@@ -30,22 +28,6 @@
 	}
 
 	/**
-	 * Looking for a match in the appropriate table (male or female)
-	 * @param  {Int} i
-	 * @param  {Table} correspondingTable
-	 * @return {Boolean}
-	 */
-	function searchForCorrespondance(i, correspondingTable) {
-		for (var j=0, length = correspondingTable.length; j < length; j++) {
-			totalCounter++;
-			if (peopleTable[i].first_name === Utils.removeDiacritics(correspondingTable[j].toUpperCase())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Browsing the list of people invited, normalize their names, and search for correspondance
 	 * @param  {Table}   people
 	 * @param  {Function} callback
@@ -58,33 +40,33 @@
 			femaleFound					= false,
 			maleFuzzyResult				= 0,
 			femaleFuzzyResult			= 0;
-			
-		peopleTable	= people;
 
-		for (var i=0, peopleLength = peopleTable.length; i < peopleLength; i++) {
+		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
+			var personName = people[i].first_name;
 			//Just keeping the first part of the first name if it's made of more than one name
-			if (peopleTable[i].first_name.indexOf(' ') > 0) {
-				peopleTable[i].first_name = peopleTable[i].first_name.substring(0, peopleTable[i].first_name.indexOf(' '));
+			if (personName.indexOf(' ') > 0) {
+				personName = personName.substring(0, personName.indexOf(' '));
 			}
+
+			personName					= Utils.removeDiacritics(personName.toUpperCase()); //Getting rid of weird characters.
 			maleFound					= false;
 			femaleFound					= false;
-			peopleTable[i].first_name	= Utils.removeDiacritics(peopleTable[i].first_name.toUpperCase()); //Getting rid of weird characters.
-			correspondingMaleTable		= maleNames[peopleTable[i].first_name.substring(0,1)];
-			correspondingFemaleTable	= femaleNames[peopleTable[i].first_name.substring(0,1)];
+			correspondingMaleTable		= maleNames[personName.substring(0,1)];
+			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
 
 			if (correspondingMaleTable) {
-				maleFound = searchForCorrespondance(i, correspondingMaleTable, maleCounter, maleFound);
+				maleFound = searchForCorrespondance(personName, correspondingMaleTable);
 				if (maleFound) {
 					maleCounter++;
 				} else {
-					femaleFound = searchForCorrespondance(i, correspondingFemaleTable, femaleCounter, femaleFound);
+					femaleFound = searchForCorrespondance(personName, correspondingFemaleTable);
 					if (femaleFound) {
 						femaleCounter++;
 					} else {
 						maleFuzzy = new FuzzySet(correspondingMaleTable);
 						femaleFuzzy = new FuzzySet(correspondingFemaleTable);
-						femaleFuzzyResult = femaleFuzzy.get(peopleTable[i].first_name)[0][0];
-						maleFuzzyResult = maleFuzzy.get(peopleTable[i].first_name)[0][0];
+						femaleFuzzyResult = femaleFuzzy.get(personName)[0][0];
+						maleFuzzyResult = maleFuzzy.get(personName)[0][0];
 						if (maleFuzzyResult > femaleFuzzyResult && maleFuzzyResult > 1) {
 							maleCounter++;
 						} else if (femaleFuzzyResult > maleFuzzyResult && femaleFuzzyResult > 1) {
