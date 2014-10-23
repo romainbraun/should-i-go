@@ -88,6 +88,9 @@
 
 	module.exports.hidePeople = function () {
 		$('.overlay').removeClass('show');
+
+		// Disabling body scrolling
+		$('body').css({overflow:'hidden'});
 	};
 
 })();

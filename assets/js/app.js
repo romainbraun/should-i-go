@@ -44,7 +44,7 @@
 	 */
 	window.fbAsyncInit = function() {
 		FB.init({
-			appId      : facebookCredentials.localAppId,
+			appId      : facebookCredentials.testAppId,
 			cookie     : true,
 			xfbml      : true,  
 			version    : 'v2.1' 
