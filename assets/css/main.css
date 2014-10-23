@@ -67,7 +67,7 @@ h1 {
 	top: 10px;
 	left: 10px;
 }
-.fb-like {
+.fb-like.fb-iframe-widget {
 	position: absolute;
 	left: 10px;
 	top: 40px;
