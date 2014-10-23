@@ -31,17 +31,6 @@
 				View.goTo(1);
 				console.log("%cThank you for looking into my code, stranger! Feel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
 				$('body').addClass('show');
-
-
-
-				// for testing purposes
-				// setTimeout(function () {
-				// 	facebookAPI.getEventInfos(1533621923519547, function (response) {
-				// 	console.log(response);
-				// 	Overlays.populate(response.data);
-				// 	$('.step1').removeClass().addClass('step2');
-				// });      	
-		  //     }, 1000);
 		    });
 		} else {
 			// Otherwise let's show him the login button
@@ -92,13 +81,22 @@
 				// Fetching the people invited to the event 
 				facebookAPI.getEventPeople(eventId, function (response) {
 					// Computing ratio
-					Algorithm.compute(response.data, function (boyPercent, girlPercent, boyCount, girlCount) {
+					Algorithm.compute(response.data, function (boyPercent, girlPercent, boyCount, girlCount, boyTable, girlTable) {
 						// Displaying the results
 						View.displayRatio(boyPercent, girlPercent);
 						View.displayButtons(boyCount, girlCount);
+						Overlays.populate(boyTable, girlTable);
 					});
 				});
 			});
+		});
+
+		$('.see').click(function () {
+			View.displayPeople($(this).data('section'));
+		});
+
+		$('.overlay .close').click(function() {
+			View.hidePeople();
 		});
 		
 	}

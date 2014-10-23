@@ -76,8 +76,8 @@
 				<img src="assets/img/gender.svg" class="svg male-icon" alt="Males"> -->
 			</div>
 			<div class="actions">
-				<button class="see see-girls"></button>
-				<button class="see see-guys"></button>
+				<button class="see see-girls" data-section="#girls-overlay"></button>
+				<button class="see see-guys" data-section="#guys-overlay"></button>
 			</div>
 		</div>
 		<div class="overlay guys-overlay" id="guys-overlay">
@@ -87,7 +87,10 @@
 			</a>
 		</div>
 		<div class="overlay girls-overlay" id="girls-overlay">
-			
+			<a class="close">
+				<i class="icon"></i>
+				<span>Back</span>
+			</a>
 		</div>
 	</div>
 	<script type="text/javascript" src="assets/js/dist/1.0.0.should-i-go.min.js"></script>

@@ -9,14 +9,14 @@
 
 	/**
 	 * Placing the different blocks on the grid depending on the screen size
-	 * @param  {Int} peopleLength
 	 * @return {none}
 	 */
-	function computePositions(peopleLength) {
+	function computePositions(section) {
 		var windowWidth = $(window).width(),
 			columns		= Math.ceil(windowWidth / 200),
 			rest 		= windowWidth % 200,
-			itemWidth 	= 0;
+			itemWidth 	= 0,
+			itemCount	= 0;
 
 		// Adapting the size of the blocks if the screen size isn't a perfect multiple of 200
 		if (rest) {
@@ -25,7 +25,8 @@
 			itemWidth = 200;
 		}
 
-		$('.person').each(function (index) {
+		$(section + ' .person').each(function (index) {
+			itemCount++;
 			// Placing blocks
 			$(this).css({width: itemWidth, height: itemWidth, left: (index % columns) * itemWidth, top: Math.floor(index / columns) * itemWidth});
 
@@ -42,11 +43,8 @@
 		});
 
 		// Adding the total height to the container so we can use the body scrolling
-		$('.guys-overlay').css({height:Math.floor(peopleLength / columns) * itemWidth});
-		// Enabling body scrolling
-		$('body').css({overflow:'scroll'});
-		// Enabling lazy loading
-		$('.person img').unveil(500);
+		$(section).css({height:Math.ceil(itemCount / columns) * itemWidth});
+		
 	}
 
 	/**
@@ -54,7 +52,7 @@
 	 * @return {none}
 	 */
 	function createButtons() {
-		var m = new Marka('.guys-overlay i');
+		var m = new Marka('.overlay i');
 		m.set('times');
 		m.rotate('right');
 		m.color('#ffffff');
@@ -68,23 +66,38 @@
 	}
 
 	/**
+	 * Populates the appropriate section with the people
+	 * @param  {String} section Identifier for the section
+	 * @param  {Array} array   People
+	 * @return {none}         
+	 */
+	function populateSection(section, array) {
+		var overlay = document.getElementById(section),
+			content = "";
+
+		for (var i = 0, peopleLength = array.length; i < peopleLength; i++) {
+			content += '<div class="person"><a href="http://www.facebook.com/' + array[i].id + '" target="_blank"><img src="assets/img/bg.png" data-src="' + array[i].picture.data.url + '"> <div class="person-overlay"><span>' + array[i].first_name + '</span><span>' + array[i].last_name + '</span><hr></div></a></div>';
+		}
+		overlay.insertAdjacentHTML('beforeend', content);
+	}
+
+	/**
 	 * "public" function populating the grids with boys and girls
 	 * @param  {Object} people
 	 * @return {none}
 	 */
-	module.exports.populate = function (people) {
-		// @TODO: Tweak this so it makes the difference between dudes and girls!
-		var overlay = document.getElementById('guys-overlay'),
-			content = "";
-		for (var i = 0, peopleLength = people.length; i < peopleLength; i++) {
-			content += '<div class="person"><a href="http://www.facebook.com/' + people[i].id + '" target="_blank"><img src="assets/img/bg.png" data-src="' + people[i].picture.data.url + '"> <div class="person-overlay"><span>' + people[i].first_name + '</span><span>' + people[i].last_name + '</span><hr></div></a></div>';
-		}
-		overlay.insertAdjacentHTML('beforeend', content);
+	module.exports.populate = function (males, females) {
+		populateSection('guys-overlay', males);
+		populateSection('girls-overlay', females);
 
-		computePositions(peopleLength);
+		computePositions('#guys-overlay');
+		computePositions('#girls-overlay');
 
 		createButtons();
 
-		$(window).resize($.debounce(function () {computePositions(peopleLength);}, 500));
+		$(window).resize($.debounce(function resize() {
+			computePositions('#guys-overlay');
+			computePositions('#girls-overlay');
+		}, 500));
 	};
 })();

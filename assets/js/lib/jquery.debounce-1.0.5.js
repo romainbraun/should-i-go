@@ -52,11 +52,11 @@
 				ctx = ctx || this;
 
 				if(!timer) {
-					(function() {
+					(function handleThrottle() {
 						if(needInvoke) {
 							fn.apply(ctx, args);
 							needInvoke = false;
-							timer = setTimeout(arguments.callee, timeout);
+							timer = setTimeout(handleThrottle, timeout);
 						}
 						else {
 							timer = null;

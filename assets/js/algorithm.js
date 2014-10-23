@@ -5,11 +5,13 @@
 		Utils			= require('./utils.js'),
 		$				= require('jquery');
 
-	var femaleCounter	= 0,
+	var femaleTable		= [],
+		maleTable		= [],
 		femaleNames		= {},
+		maleNames		= {},
+		femaleCounter 	= 0,
 		maleCounter		= 0,
 		femaleFuzzy		= null,
-		maleNames		= {},
 		maleFuzzy		= null;
 
 	/**
@@ -55,33 +57,38 @@
 			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
 
 			if (correspondingMaleTable) {
-				maleFound = searchForCorrespondance(personName, correspondingMaleTable);
+				maleFound = Utils.searchForCorrespondance(personName, correspondingMaleTable);
 				if (maleFound) {
-					maleCounter++;
+					maleTable.push(people[i]);
 				} else {
-					femaleFound = searchForCorrespondance(personName, correspondingFemaleTable);
+					femaleFound = Utils.searchForCorrespondance(personName, correspondingFemaleTable);
 					if (femaleFound) {
-						femaleCounter++;
+						femaleTable.push(people[i]);
 					} else {
 						maleFuzzy = new FuzzySet(correspondingMaleTable);
 						femaleFuzzy = new FuzzySet(correspondingFemaleTable);
 						femaleFuzzyResult = femaleFuzzy.get(personName)[0][0];
 						maleFuzzyResult = maleFuzzy.get(personName)[0][0];
 						if (maleFuzzyResult > femaleFuzzyResult && maleFuzzyResult > 1) {
-							maleCounter++;
+							maleTable.push(people[i]);
 						} else if (femaleFuzzyResult > maleFuzzyResult && femaleFuzzyResult > 1) {
-							femaleCounter++;
+							femaleTable.push(people[i]);
 						}
 					}
 				}
 			}
 		}
 
+		maleCounter = maleTable.length;
+		femaleCounter = femaleTable.length;
+
 		callback(
 			Math.round(maleCounter / (femaleCounter + maleCounter) * 100), 
 			Math.round(femaleCounter / (femaleCounter + maleCounter) * 100),
 			maleCounter,
-			femaleCounter
+			femaleCounter,
+			maleTable,
+			femaleTable
 		);
 	}
 

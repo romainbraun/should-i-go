@@ -72,4 +72,22 @@
 		$('.see-guys').html(boys + " guys");
 	};
 
+	module.exports.displayPeople = function (section) {
+		$(section).addClass('show');
+
+		// Enabling body scrolling
+		$('body').css({overflow:'scroll'});
+
+		// Enabling lazy loading
+		$('.person img').unveil(500, function () {
+			$(this).load(function () {
+				$(this).addClass('show');
+			});
+		});
+	};
+
+	module.exports.hidePeople = function () {
+		$('.overlay').removeClass('show');
+	};
+
 })();

@@ -24,6 +24,7 @@ body {
 }
 a {
 	text-decoration: none;
+	outline: none;
 }
 .show {
 	opacity: 1;
@@ -323,6 +324,7 @@ input {
 	padding: 0;
 	position: absolute;
 	transition: all .3s ease;
+	cursor: pointer;
 }
 
 .results .see:hover {
@@ -428,6 +430,10 @@ input {
 	overflow: hidden;
 }
 
+.overlay.show {
+	display: block;
+}
+
 .person {
 	position: absolute;
 	transition: all .3s ease;
@@ -441,6 +447,12 @@ input {
 .person img {
 	width: 100%;
 	height: 100%;
+	opacity: 0;
+	transition: opacity .4s ease;
+}
+
+.person .show {
+	opacity: 1;
 }
 .person:hover {
 	z-index: 5;
@@ -506,6 +518,7 @@ input {
 	border-radius: 5px 0 0 5px;
 	text-align: left;
 	padding-left: 12px;
+	cursor: pointer;
 }
 
 .close:hover {
