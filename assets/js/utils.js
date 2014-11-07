@@ -41,6 +41,11 @@
 		return re.exec(url)[1] || false;
 	};
 
+	/**
+	 * Only keep the first part of the first name if there is a space inside it
+	 * @param  {String} name Name of the person
+	 * @return {String}      First part of it | Full name
+	 */
 	module.exports.keepFirstName = function (name) {
 		var re = /(\w*)\s?/ig;
 		return re.exec(name)[1];
