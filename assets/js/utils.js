@@ -41,6 +41,11 @@
 		return re.exec(url)[1] || false;
 	};
 
+	module.exports.keepFirstName = function (name) {
+		var re = /(\w*)\s?/ig;
+		return re.exec(name)[1];
+	};
+
 	/**
 	 * Preparing the diacritics table
 	 * @return {none}
@@ -63,6 +68,9 @@
 	 * @return {Boolean}
 	 */
 	module.exports.searchForCorrespondance = function (name, correspondingTable) {
+		if (!correspondingTable) {
+			return false;
+		}
 		for (var j=0, length = correspondingTable.length; j < length; j++) {
 			if (name === removeDiacritics(correspondingTable[j].toUpperCase())) {
 				return true;

@@ -41,6 +41,7 @@ describe('Utils', function(){
     it('should find a correspondance', function(){
       assert.strictEqual(true, utils.searchForCorrespondance('ROMAIN', ['Römaiń', 'Cyril']));
       assert.strictEqual(false, utils.searchForCorrespondance('ROMAINN', ['Römaiń', 'Cyril']));
+      assert.strictEqual(false, utils.searchForCorrespondance('ROMINE'));
     });
   });
 });
@@ -51,6 +52,16 @@ describe('Utils', function(){
       assert.strictEqual("male", utils.fuzzySearch('ROMAIN', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
       assert.strictEqual(false, utils.fuzzySearch('ROMAINN', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
       assert.strictEqual("female", utils.fuzzySearch('ROMINE', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
+    });
+  });
+});
+
+describe('Utils', function(){
+  describe('keepFirstName', function(){
+    it('should keep the first part of the name', function(){
+      assert.strictEqual("Jean", utils.keepFirstName('Jean'));
+      assert.strictEqual("Jean", utils.keepFirstName('Jean Christophe'));
+      assert.strictEqual("Jean", utils.keepFirstName('Jean Christophe machin'));
     });
   });
 });

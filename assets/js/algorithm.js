@@ -39,30 +39,28 @@
 			correspondingFemaleTable	= "",
 			result						= {};
 
-		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
-			var personName = people[i].first_name;
-			//Just keeping the first part of the first name if it's made of more than one name
-			if (personName.indexOf(' ') > 0) {
-				personName = personName.substring(0, personName.indexOf(' '));
-			}
-
-			personName					= Utils.removeDiacritics(personName.toUpperCase()); //Getting rid of weird characters.
+		for (var i=0, peopleLength = people.length; i < peopleLength; i++) { 
+			var personName = Utils.keepFirstName(people[i].first_name);
+			//Just keeping the first part of the first name if it's made of more than one name 
+			personName					= Utils.removeDiacritics(personName.toUpperCase()); //Getting rid of weird characters. 
 			correspondingMaleTable		= maleNames[personName.substring(0,1)];
 			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
 
-			if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) {
+			if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) { 
 				maleTable.push(people[i]);
 			} else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
-				femaleTable.push(people[i]);
+				femaleTable.push(people[i]); 
 			}
 		}
 
-		result.maleCounter		= maleTable.length;
-		result.femaleCounter	= femaleTable.length;
-		result.maleRatio		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
-		result.femaleRatio		= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
-		result.maleCounter		= Math.round(maleRatio / 100 * people.length);
-		result.femaleCounter	= Math.round(femaleRatio / 100 * people.length);
+		result.boyCount		= maleTable.length;
+		result.girlCount	= femaleTable.length; 
+		result.boyPercent	= Math.round(result.boyCount / (result.girlCount + result.boyCount) * 100);
+		result.girlPercent	= Math.round(result.girlCount / (result.girlCount + result.boyCount) * 100);
+		result.boyCount		= Math.round(result.boyPercent / 100 * people.length);
+		result.girlCount	= Math.round(result.girlPercent / 100 * people.length);
+		result.boyTable		= maleTable;
+		result.girlTable	= femaleTable;
 
 		callback(result);
 	}
