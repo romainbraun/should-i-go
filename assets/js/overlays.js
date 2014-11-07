@@ -12,10 +12,10 @@
 	 * @return {none}
 	 */
 	function computePositions(section) {
-		var windowWidth = $(window).width(),
+		var windowWidth	= $(window).width(),
 			columns		= Math.ceil(windowWidth / 200),
-			rest 		= windowWidth % 200,
-			itemWidth 	= 0,
+			rest		= windowWidth % 200,
+			itemWidth	= 0,
 			itemCount	= 0;
 
 		// Adapting the size of the blocks if the screen size isn't a perfect multiple of 200

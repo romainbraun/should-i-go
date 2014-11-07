@@ -37,10 +37,10 @@
 	 */
 	module.exports.getEventPeople = function (eventId, callback) {
 		FB.api(
-		    "/v2.1/" + eventId + "/attending/?fields=first_name,last_name,picture.height(200).width(200).type(large)",
-		    function (response) {
-			    callback(response);
-		    }
+			"/v2.1/" + eventId + "/attending/?fields=first_name,last_name,picture.height(200).width(200).type(large)",
+			function (response) {
+				callback(response);
+			}
 		);
 	};
 
@@ -52,10 +52,10 @@
 	 */
 	module.exports.getEventInfos = function (eventId, callback) {
 		FB.api(
-		    "/v2.1/" + eventId + "?fields=name,start_time",
-		    function (response) {
-			    callback(response);
-		    }
+			"/v2.1/" + eventId + "?fields=name,start_time",
+			function (response) {
+				callback(response);
+			}
 		);
 	};
 

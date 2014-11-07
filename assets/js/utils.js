@@ -2,7 +2,7 @@
 (function () {
 	'use strict';
 	var FuzzySet		= require('./lib/fuzzyset.js'),
-		monthNames 		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+		monthNames		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		diacriticsTable	= require('./resources/diacritics.json'),
 		diacriticsMap	= [];
 
@@ -79,10 +79,10 @@
 	 * @return {String}                          Result
 	 */
 	module.exports.fuzzySearch = function (name, correspondingMaleTable, correspondingFemaleTable) {
-		var maleFuzzy 			= new FuzzySet(correspondingMaleTable),
-			femaleFuzzy 		= new FuzzySet(correspondingFemaleTable),
-			femaleFuzzyResult 	= femaleFuzzy.get(name)[0][0],
-			maleFuzzyResult 	= maleFuzzy.get(name)[0][0];
+		var maleFuzzy			= new FuzzySet(correspondingMaleTable),
+			femaleFuzzy			= new FuzzySet(correspondingFemaleTable),
+			femaleFuzzyResult	= femaleFuzzy.get(name)[0][0],
+			maleFuzzyResult		= maleFuzzy.get(name)[0][0];
 
 			console.log('results, ', maleFuzzyResult, femaleFuzzyResult);
 
