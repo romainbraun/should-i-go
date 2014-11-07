@@ -7,11 +7,7 @@
 	var femaleTable		= [],
 		maleTable		= [],
 		femaleNames		= {},
-		maleNames		= {},
-		femaleCounter	= 0,
-		maleCounter		= 0,
-		femaleRatio		= 0,
-		maleRatio		= 0;
+		maleNames		= {};
 
 	/**
 	 * Fetching JSON files containing male and female names
