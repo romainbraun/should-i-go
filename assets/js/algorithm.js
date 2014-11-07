@@ -36,9 +36,7 @@
 	 */
 	function checkRatio(people, callback) {
 		var correspondingMaleTable		= "",
-			correspondingFemaleTable	= "",
-			maleFound					= false,
-			femaleFound					= false;
+			correspondingFemaleTable	= "";
 
 		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
 			var personName = people[i].first_name;
@@ -48,18 +46,14 @@
 			}
 
 			personName					= Utils.removeDiacritics(personName.toUpperCase()); //Getting rid of weird characters.
-			maleFound					= false;
-			femaleFound					= false;
 			correspondingMaleTable		= maleNames[personName.substring(0,1)];
 			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
 
 			if (correspondingMaleTable) {
-				maleFound = Utils.searchForCorrespondance(personName, correspondingMaleTable);
-				if (maleFound) {
+				if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) {
 					maleTable.push(people[i]);
 				} else {
-					femaleFound = Utils.searchForCorrespondance(personName, correspondingFemaleTable);
-					if (femaleFound) {
+					if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
 						femaleTable.push(people[i]);
 					} else {
 						// Let's try without fuzzy searching
