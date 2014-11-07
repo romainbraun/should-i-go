@@ -36,7 +36,8 @@
 	 */
 	function checkRatio(people, callback) {
 		var correspondingMaleTable		= "",
-			correspondingFemaleTable	= "";
+			correspondingFemaleTable	= "",
+			result						= {};
 
 		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
 			var personName = people[i].first_name;
@@ -58,21 +59,14 @@
 			}
 		}
 
-		maleCounter		= maleTable.length;
-		femaleCounter	= femaleTable.length;
-		maleRatio		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
-		femaleRatio		= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
-		maleCounter		= Math.round(maleRatio / 100 * people.length);
-		femaleCounter	= Math.round(femaleRatio / 100 * people.length);
+		result.maleCounter		= maleTable.length;
+		result.femaleCounter	= femaleTable.length;
+		result.maleRatio		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
+		result.femaleRatio		= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
+		result.maleCounter		= Math.round(maleRatio / 100 * people.length);
+		result.femaleCounter	= Math.round(femaleRatio / 100 * people.length);
 
-		callback(
-			maleRatio,
-			femaleRatio,
-			maleCounter,
-			femaleCounter,
-			maleTable,
-			femaleTable
-		);
+		callback(result);
 	}
 
 	/**

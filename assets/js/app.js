@@ -3,7 +3,7 @@
 	'use strict';
 	var	facebookCredentials	= require('./resources/facebookCredentials.json'),
 		facebookAPI			= require('./facebook.js'),
-		algorithm			= require('./algorithm.js'),
+		Algorithm			= require('./algorithm.js'),
 		Overlays			= require('./overlays.js'),
 		Utils				= require('./utils.js'),
 		View				= require('./view.js'),
@@ -81,11 +81,11 @@
 				// Fetching the people invited to the event 
 				facebookAPI.getEventPeople(eventId, function (response) {
 					// Computing ratio
-					Algorithm.compute(response.data, function (boyPercent, girlPercent, boyCount, girlCount, boyTable, girlTable) {
+					Algorithm.compute(response.data, function (results) {
 						// Displaying the results
-						View.displayRatio(boyPercent, girlPercent);
-						View.displayButtons(boyCount, girlCount);
-						Overlays.populate(boyTable, girlTable);
+						View.displayRatio(results.boyPercent, results.girlPercent);
+						View.displayButtons(results.boyCount, results.girlCount);
+						Overlays.populate(results.boyTable, results.girlTable);
 					});
 				});
 			});
