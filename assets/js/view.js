@@ -6,8 +6,8 @@
 		raf		= require('raf'),
 		$		= require('jquery');
 
-	var percentAnimation 	= null,
-		percentIncrement 	= 0,
+	var percentAnimation	= null,
+		percentIncrement	= 0,
 		percentDuration		= 120, //Duration of the animation in frames
 		boyPercent			= 0,
 		girlPercent			= 0;
