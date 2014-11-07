@@ -50,12 +50,10 @@
 			correspondingMaleTable		= maleNames[personName.substring(0,1)];
 			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
 
-			if (correspondingMaleTable) {
-				if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) {
-					maleTable.push(people[i]);
-				} else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
-					femaleTable.push(people[i]);
-				}
+			if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) {
+				maleTable.push(people[i]);
+			} else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
+				femaleTable.push(people[i]);
 			}
 		}
 
