@@ -1,14 +1,14 @@
 /*globals FB, require */
 (function () {
 	'use strict';
-	var	facebookCredentials = require('./resources/facebookCredentials.json'),
-		facebookAPI 		= require('./facebook.js'),
-		Algorithm 			= require('./algorithm.js'),
-		Overlays 			= require('./overlays.js'),
+	var	facebookCredentials	= require('./resources/facebookCredentials.json'),
+		facebookAPI			= require('./facebook.js'),
+		algorithm			= require('./algorithm.js'),
+		Overlays			= require('./overlays.js'),
 		Utils				= require('./utils.js'),
 		View				= require('./view.js'),
-		SVG 				= require('./svgHandler.js'),
-		$ 					= require('jquery');
+		SVG					= require('./svgHandler.js'),
+		$					= require('jquery');
 
 	/**
 	 * Called on facebook init
@@ -31,7 +31,7 @@
 				View.goTo(1);
 				console.log("%cThank you for looking into my code, stranger! Feel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
 				$('body').addClass('show');
-		    });
+			});
 		} else {
 			// Otherwise let's show him the login button
 			$('body').addClass('show');

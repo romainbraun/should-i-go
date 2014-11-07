@@ -1,14 +1,14 @@
 /*globals require, module */
 (function () {
 	'use strict';
- 	var Utils			= require('./utils.js'),
+	var Utils			= require('./utils.js'),
 		$				= require('jquery');
 
 	var femaleTable		= [],
 		maleTable		= [],
 		femaleNames		= {},
 		maleNames		= {},
-		femaleCounter 	= 0,
+		femaleCounter	= 0,
 		maleCounter		= 0,
 		femaleRatio		= 0,
 		maleRatio		= 0;
@@ -52,25 +52,16 @@
 			if (correspondingMaleTable) {
 				if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) {
 					maleTable.push(people[i]);
-				} else {
-					if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
-						femaleTable.push(people[i]);
-					} else {
-						// Let's try without fuzzy searching
-						// if (Utils.fuzzySearch(personName, correspondingMaleTable, correspondingFemaleTable)) {
-						// 	maleTable.push(people[i]);
-						// } else {
-						// 	femaleTable.push(people[i]);
-						// }
-					}
+				} else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
+					femaleTable.push(people[i]);
 				}
 			}
 		}
 
-		maleCounter 	= maleTable.length;
-		femaleCounter 	= femaleTable.length;
-		maleRatio 		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
-		femaleRatio 	= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
+		maleCounter		= maleTable.length;
+		femaleCounter	= femaleTable.length;
+		maleRatio		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
+		femaleRatio		= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
 		maleCounter		= Math.round(maleRatio / 100 * people.length);
 		femaleCounter	= Math.round(femaleRatio / 100 * people.length);
 
