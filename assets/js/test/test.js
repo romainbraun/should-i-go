@@ -44,3 +44,13 @@ describe('Utils', function(){
     });
   });
 });
+
+describe('Utils', function(){
+  describe('fuzzySearch', function(){
+    it('should find a correspondance', function(){
+      assert.strictEqual("male", utils.fuzzySearch('ROMAIN', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
+      assert.strictEqual(false, utils.fuzzySearch('ROMAINN', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
+      assert.strictEqual("female", utils.fuzzySearch('ROMINE', ['ROMAIN', 'Cyril'], ['ROMAINE', 'Cyrille']));
+    });
+  });
+});

@@ -1,8 +1,7 @@
 /*globals require, module */
 (function () {
 	'use strict';
-	var FuzzySet		= require('./lib/fuzzyset.js'),
-		Utils			= require('./utils.js'),
+ 	var Utils			= require('./utils.js'),
 		$				= require('jquery');
 
 	var femaleTable		= [],
@@ -11,8 +10,8 @@
 		maleNames		= {},
 		femaleCounter 	= 0,
 		maleCounter		= 0,
-		femaleFuzzy		= null,
-		maleFuzzy		= null;
+		femaleRatio		= 0,
+		maleRatio		= 0;
 
 	/**
 	 * Fetching JSON files containing male and female names
@@ -39,9 +38,7 @@
 		var correspondingMaleTable		= "",
 			correspondingFemaleTable	= "",
 			maleFound					= false,
-			femaleFound					= false,
-			maleFuzzyResult				= 0,
-			femaleFuzzyResult			= 0;
+			femaleFound					= false;
 
 		for (var i=0, peopleLength = people.length; i < peopleLength; i++) {
 			var personName = people[i].first_name;
@@ -65,26 +62,27 @@
 					if (femaleFound) {
 						femaleTable.push(people[i]);
 					} else {
-						maleFuzzy = new FuzzySet(correspondingMaleTable);
-						femaleFuzzy = new FuzzySet(correspondingFemaleTable);
-						femaleFuzzyResult = femaleFuzzy.get(personName)[0][0];
-						maleFuzzyResult = maleFuzzy.get(personName)[0][0];
-						if (maleFuzzyResult > femaleFuzzyResult && maleFuzzyResult > 1) {
-							maleTable.push(people[i]);
-						} else if (femaleFuzzyResult > maleFuzzyResult && femaleFuzzyResult > 1) {
-							femaleTable.push(people[i]);
-						}
+						// Let's try without fuzzy searching
+						// if (Utils.fuzzySearch(personName, correspondingMaleTable, correspondingFemaleTable)) {
+						// 	maleTable.push(people[i]);
+						// } else {
+						// 	femaleTable.push(people[i]);
+						// }
 					}
 				}
 			}
 		}
 
-		maleCounter = maleTable.length;
-		femaleCounter = femaleTable.length;
+		maleCounter 	= maleTable.length;
+		femaleCounter 	= femaleTable.length;
+		maleRatio 		= Math.round(maleCounter / (femaleCounter + maleCounter) * 100);
+		femaleRatio 	= Math.round(femaleCounter / (femaleCounter + maleCounter) * 100);
+		maleCounter		= Math.round(maleRatio / 100 * people.length);
+		femaleCounter	= Math.round(femaleRatio / 100 * people.length);
 
 		callback(
-			Math.round(maleCounter / (femaleCounter + maleCounter) * 100), 
-			Math.round(femaleCounter / (femaleCounter + maleCounter) * 100),
+			maleRatio,
+			femaleRatio,
 			maleCounter,
 			femaleCounter,
 			maleTable,

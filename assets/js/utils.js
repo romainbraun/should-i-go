@@ -1,7 +1,8 @@
 /*globals module */
 (function () {
 	'use strict';
-	var monthNames 		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+	var FuzzySet		= require('./lib/fuzzyset.js'),
+		monthNames 		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		diacriticsTable	= require('./resources/diacritics.json'),
 		diacriticsMap	= [];
 
@@ -58,7 +59,7 @@
 	/**
 	 * Looking for a match in the appropriate table (male or female)
 	 * @param  {Int} i
-	 * @param  {Table} correspondingTable
+	 * @param  {Array} correspondingTable
 	 * @return {Boolean}
 	 */
 	module.exports.searchForCorrespondance = function (name, correspondingTable) {
@@ -68,6 +69,30 @@
 			}
 		}
 		return false;
+	};
+
+	/**
+	 * Name approximation with the levenhstein algorithm
+	 * @param  {String} name                     Name of the person
+	 * @param  {Array} correspondingMaleTable   Male name array
+	 * @param  {Array} correspondingFemaleTable Female name array
+	 * @return {String}                          Result
+	 */
+	module.exports.fuzzySearch = function (name, correspondingMaleTable, correspondingFemaleTable) {
+		var maleFuzzy 			= new FuzzySet(correspondingMaleTable),
+			femaleFuzzy 		= new FuzzySet(correspondingFemaleTable),
+			femaleFuzzyResult 	= femaleFuzzy.get(name)[0][0],
+			maleFuzzyResult 	= maleFuzzy.get(name)[0][0];
+
+			console.log('results, ', maleFuzzyResult, femaleFuzzyResult);
+
+		if (maleFuzzyResult > femaleFuzzyResult && maleFuzzyResult > 0) {
+			return "male";
+		} else if (femaleFuzzyResult > maleFuzzyResult && femaleFuzzyResult > 0) {
+			return "female";
+		} else {
+			return false;
+		}
 	};
 
 })();
