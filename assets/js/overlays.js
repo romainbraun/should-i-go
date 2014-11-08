@@ -76,7 +76,7 @@
 			content = "";
 
 		for (var i = 0, peopleLength = array.length; i < peopleLength; i++) {
-			content += '<div class="person"><a href="http://www.facebook.com/' + array[i].id + '" target="_blank"><img src="assets/img/bg.png" data-src="' + array[i].picture.data.url + '"> <div class="person-overlay"><span>' + array[i].first_name + '</span><span>' + array[i].last_name + '</span><hr></div></a></div>';
+			content += '<div class="person"><a href="http://www.facebook.com/' + array[i].id + '" target="_blank"><img src="assets/img/bg.png" data-src="' + array[i].picture.data.url + '" alt="Profile Picture"> <div class="person-overlay"><span>' + array[i].first_name + '</span><span>' + array[i].last_name + '</span><hr></div></a></div>';
 		}
 		overlay.insertAdjacentHTML('beforeend', content);
 	}
