@@ -1,13 +1,16 @@
 /*globals require, module */
 (function () {
 	'use strict';
-	var Utils			= require('./utils.js'),
-		$				= require('jquery');
+	var Utils	= require('./utils.js'),
+		$		= require('jquery');
 
-	var femaleTable		= [],
-		maleTable		= [],
-		femaleNames		= {},
-		maleNames		= {};
+	var femaleTable					= [],
+		maleTable					= [],
+		femaleNames					= {},
+		maleNames					= {},
+		correspondingMaleTable		= [],
+		correspondingFemaleTable	= [],
+		result						= {};
 
 	/**
 	 * Fetching JSON files containing male and female names
@@ -15,13 +18,15 @@
 	 * @return {none}
 	 */
 	function getNames(callback) {
-		$.getJSON("assets/js/resources/names.males.json", function (data) {
-			maleNames = data.males;
-			$.getJSON("assets/js/resources/names.females.json", function (data) {
-				femaleNames = data.females;
-				callback();
+		if($.isEmptyObject(maleNames)) {
+			$.getJSON("assets/js/resources/names.males.json", function (data) {
+				maleNames = data.males;
+				$.getJSON("assets/js/resources/names.females.json", function (data) {
+					femaleNames = data.females;
+					callback();
+				});
 			});
-		});
+		}
 	}
 
 	/**
@@ -31,10 +36,6 @@
 	 * @return {none}
 	 */
 	function checkRatio(people, callback) {
-		var correspondingMaleTable		= "",
-			correspondingFemaleTable	= "",
-			result						= {};
-
 		for (var i=0, peopleLength = people.length; i < peopleLength; i++) { 
 			var personName = Utils.keepFirstName(people[i].first_name);
 			//Just keeping the first part of the first name if it's made of more than one name 
