@@ -26,6 +26,8 @@
 					callback();
 				});
 			});
+		} else {
+			callback();
 		}
 	}
 
