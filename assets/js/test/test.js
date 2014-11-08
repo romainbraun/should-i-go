@@ -65,3 +65,11 @@ describe('Utils', function(){
     });
   });
 });
+
+describe('Utils', function(){
+  describe('computeRatio', function(){
+    it('should return an adequate ratio', function(){
+      assert.deepEqual({boyCount:1, girlCount:1, boyPercent: 50, girlPercent: 50, boyTable: ['Dude1'], girlTable:['girl1']}, utils.computeRatio(['Dude1'], ['girl1'],2));
+    });
+  });
+});

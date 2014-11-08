@@ -51,6 +51,20 @@
 		return re.exec(name)[1];
 	};
 
+	module.exports.computeRatio = function (maleTable, femaleTable, peopleLength) {
+		var result = {};
+		result.boyCount		= maleTable.length;
+		result.girlCount	= femaleTable.length; 
+		result.boyPercent	= Math.round(result.boyCount / (result.girlCount + result.boyCount) * 100);
+		result.girlPercent	= Math.round(result.girlCount / (result.girlCount + result.boyCount) * 100);
+		result.boyCount		= Math.round(result.boyPercent / 100 * peopleLength);
+		result.girlCount	= Math.round(result.girlPercent / 100 * peopleLength);
+		result.boyTable		= maleTable;
+		result.girlTable	= femaleTable;
+
+		return result;
+	};
+
 	/**
 	 * Preparing the diacritics table
 	 * @return {none}
