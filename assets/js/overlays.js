@@ -1,9 +1,8 @@
-/*globals require, module, Marka */
+/*globals require, module */
 (function () {
 	'use strict';
 
 	require('./lib/jquery.unveil.js');
-	require('./lib/marka.min.js');
 	
 	var $ = require('jquery');
 
@@ -52,16 +51,13 @@
 	 * @return {none}
 	 */
 	function createButtons() {
-		var m = new Marka('.overlay i');
-		m.set('times');
-		m.rotate('right');
-		m.color('#ffffff');
-		$('.close').hover(
-		function () {
-			m.set('chevron');
+		Utils.createMarkaButton('.overlay', {
+			shape: 'times',
+			orientation: 'right'
 		},
-		function () {
-			m.set('times');
+		{
+			shape: 'chevron',
+			orientation: 'right'
 		});
 	}
 

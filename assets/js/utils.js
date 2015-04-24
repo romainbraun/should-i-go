@@ -1,8 +1,13 @@
-/*globals module */
+/*globals module, Marka */
 (function () {
 	'use strict';
-	var FuzzySet		= require('./lib/fuzzyset.js'),
-		monthNames		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+	require('./lib/marka.min.js');
+
+	var FuzzySet	= require('./lib/fuzzyset.js'),
+		$			= require('jquery');
+		
+	var monthNames		= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 		diacriticsTable	= require('./resources/diacritics.json'),
 		diacriticsMap	= [];
 
@@ -120,6 +125,22 @@
 		} else {
 			return false;
 		}
+	};
+
+	module.exports.createMarkaButton = function (hoverElmt, initialState, hoverState) {
+		var m = new Marka(hoverElmt + ' i');
+		m.set(initialState.shape);
+		m.rotate(initialState.orientation);
+		m.color('#ffffff');
+		$(hoverElmt).hover(
+		function () {
+			m.rotate(hoverState.orientation);
+			m.set(hoverState.shape);
+		},
+		function () {
+			m.set(initialState.shape);
+			m.rotate(initialState.orientation);
+		});
 	};
 
 })();
