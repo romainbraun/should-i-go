@@ -81,10 +81,10 @@
   });
 
   gulp.task('watch', function () {
-      watch('./assets/js/*.js', function (files, cb) {
+      watch('assets/js/*.js', function (files, cb) {
           gulp.start('javascript', cb);
       });
-      watch('./assets/css/*.css', function (files, cb) {
+      watch('assets/css/*.css', function (files, cb) {
           gulp.start('css', cb);
       });
   });

@@ -98,7 +98,8 @@
 		$('.overlay .close').click(function() {
 			View.hidePeople();
 		});
-		
+
+		View.makeFooterButton();
 	}
 
 	bindLinks();

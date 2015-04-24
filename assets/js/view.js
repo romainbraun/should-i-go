@@ -2,6 +2,8 @@
 (function () {
 	'use strict';
 
+	require('./lib/marka.min.js');
+
 	var Utils	= require('./utils.js'),
 		raf		= require('raf'),
 		$		= require('jquery');
@@ -91,6 +93,24 @@
 
 		// Disabling body scrolling
 		$('body').css({overflow:'hidden'});
+	};
+
+	/**
+	 * Creates the footer button using Marka.js
+	 * @return {none}
+	 */
+	module.exports.makeFooterButton = function () {	
+		var m = new Marka('.footer i');
+		m.set('chevron');
+		m.rotate('up');
+		m.color('#ffffff');
+		$('.footer').hover(
+		function () {
+			m.rotate('down');
+		},
+		function () {
+			m.rotate('up');
+		});
 	};
 
 })();

@@ -38,18 +38,27 @@
 	<div class="step0">
 		<div class="logo">
 			<a href="#" title="Should I Go?">
-				<!-- <img src="assets/img/empty.gif"> -->
-				<!-- <img src="assets/img/logo-png8.png" alt="Should I go?" class="should-i-go-logo"> -->
 			</a>
 			<img src="assets/img/logo-halo.png" alt="Should I go?" class="should-i-go-halo">
 		</div class="logo">
 		<div class="facebook-login">
-			<span>We won't store nor use any of your informations. We just need access to facebook.</span>
-			<a href="#" id="fb-login">Log in with facebook</a>
+			<h1>Want to check the boy/girl ratio of a Facebook event?</h1>
+			<span class="welcome">It is here!</span>
+			<div class="fb-login" id="fb-login">
+					<div class="fb-login-wrapper">
+						<div class="decoration">
+							<img src="assets/img/facebook.svg" class="svg facebook" alt="Facebook">
+						</div>
+						<div class="cta">
+							<span>Login with facebook</span>
+						</div>
+					</div>
+				</div>
+			<span class="facebook-info">We won't store nor use any of your informations. <br/> We will not post on your timeline.</span>
 		</div>
 		<div class="user-input">
-			<h1>Just paste in the URL of the facebook event you want to sausage check</h1>
-			<input type="url" placeholder="Kazakhstan is the greatest country in the world. All other count.." autofocus>
+			
+			<input type="url" placeholder="Just paste in the URL of the event you want to check" autofocus>
 			<a href="#">
 				<div class="compute">
 					<div class="compute-wrapper">
@@ -76,8 +85,15 @@
 			</div>
 			<span class="event-name"></span>
 			<div class="results-display">
-			<span class="girlPercent"></span>
-			<span class="boyPercent"></span>
+				<!-- <div class="girlDisplay"> -->
+					<span class="girlPercent"></span>
+				<!-- </div> -->
+				<!-- <div class="bars"> -->
+					
+				<!-- </div> -->
+				<!-- <div class="boyDisplay"> -->
+					<span class="boyPercent"></span>
+				<!-- </div> -->
 				<!-- <img src="assets/img/gender.svg" class="svg female-icon" alt="Females">
 				<img src="assets/img/gender.svg" class="svg male-icon" alt="Males"> -->
 			</div>
@@ -97,6 +113,12 @@
 				<i class="icon"></i>
 				<span>Back</span>
 			</a>
+		</div>
+	</div>
+	<div class="footer">
+		<i class="infos"></i>
+		<div class="footer-wrapper">
+			
 		</div>
 	</div>
 	<script type="text/javascript" src="assets/js/dist/1.0.0.should-i-go.min.js"></script>
