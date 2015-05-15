@@ -127,6 +127,13 @@
 		}
 	};
 
+	/**
+	 * Create a Marka icon
+	 * @param  {String} hoverElmt    The element listening to the hover event
+	 * @param  {object} initialState Attributes for the initial state of the icon
+	 * @param  {object} hoverState   Attributes for the hover state
+	 * @return {none}  
+	 */
 	module.exports.createMarkaButton = function (hoverElmt, initialState, hoverState) {
 		var m = new Marka(hoverElmt + ' i');
 		m.set(initialState.shape);

@@ -1,0 +1,75 @@
+@keyframes logo {
+	0% { background-position: 0; }
+	100% { background-position: -8257px; }
+}
+@-webkit-keyframes logo {
+	0% { background-position: 0; }
+	100% { background-position: -8257px; }
+}
+@-moz-keyframes logo {
+	0% { background-position: 0; }
+	100% { background-position: -8257px; }
+}
+@-o-keyframes logo {
+	0% { background-position: 0; }
+	100% { background-position: -8257px; }
+}
+
+@keyframes girlDisplay {
+	0% { background-position: 0; }
+	100% { background-position: -18000px; }
+}
+@-webkit-keyframes girlDisplay {
+	0% { background-position: 0; }
+	100% { background-position: -18000px; }
+}
+@-moz-keyframes girlDisplay {
+	0% { background-position: 0; }
+	100% { background-position: -18000px; }
+}
+@-o-keyframes girlDisplay {
+	0% { background-position: 0; }
+	100% { background-position: -18000px; }
+}
+
+@keyframes hideThat {
+	0% { opacity: 1; height: auto; }
+	99% { opacity: 0; height: auto; }
+	100% { opacity: 0; height: 0; }
+}
+@-webkit-keyframes hideThat {
+	0% { opacity: 1; height: auto; }
+	99% { opacity: 0; height: auto; }
+	100% { opacity: 0; height: 0; }
+}
+@-moz-keyframes hideThat {
+	0% { opacity: 1; height: auto; }
+	99% { opacity: 0; height: auto; }
+	100% { opacity: 0; height: 0; }
+}
+@-o-keyframes hideThat {
+	0% { opacity: 1; height: auto; }
+	99% { opacity: 0; height: auto; }
+	100% { opacity: 0; height: 0; }
+}
+
+@keyframes showThat {
+	0% { opacity: 0; height: 0; }
+	1% { opacity: 0; height: auto; }
+	100% { opacity: 1; height: auto; }
+}
+@-webkit-keyframes showThat {
+	0% { opacity: 0; height: 0; }
+	1% { opacity: 0; height: auto; }
+	100% { opacity: 1; height: auto; }
+}
+@-moz-keyframes showThat {
+	0% { opacity: 0; height: 0; }
+	1% { opacity: 0; height: auto; }
+	100% { opacity: 1; height: auto; }
+}
+@-o-keyframes showThat {
+	0% { opacity: 0; height: 0; }
+	1% { opacity: 0; height: auto; }
+	100% { opacity: 1; height: auto; }
+}

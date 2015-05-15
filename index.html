@@ -33,17 +33,27 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/dist/main.css">
 </head>
 <body>
-	<a href="https://twitter.com/share" class="twitter-share-button" data-text="Should I Go? Facebook boy/girl ratio calculator">Tweet</a>
+	<div class="tweet-container">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="Should I Go? Facebook boy/girl ratio calculator">Tweet</a>
+	</div>
 	<div class="fb-like" data-href="http://dev.shouldigo.romainbraun.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 	<div class="step0">
+
+		<!-- LOGO -->
 		<div class="logo">
-			<a href="#" title="Should I Go?">
-			</a>
-			<img src="assets/img/logo-halo.png" alt="Should I go?" class="should-i-go-halo">
-		</div class="logo">
+			<div class="logo-wrapper">
+				<a href="#" title="Should I Go?">
+				</a>
+				<img src="assets/img/logo-halo.png" alt="Should I go?" class="should-i-go-halo">
+			</div>
+		</div>
+
+		<!-- FACEBOOK LOGIN -->
 		<div class="facebook-login">
 			<h1>Want to check the boy/girl ratio of a Facebook event?</h1>
+			<img src="assets/img/gender.svg" class="svg female" alt="Female">
 			<span class="welcome">It is here!</span>
+			<img src="assets/img/gender.svg" class="svg male" alt="Male">
 			<div class="fb-login" id="fb-login">
 					<div class="fb-login-wrapper">
 						<div class="decoration">
@@ -56,6 +66,8 @@
 				</div>
 			<span class="facebook-info">We won't store nor use any of your informations. <br/> We will not post on your timeline.</span>
 		</div>
+
+		<!-- MAIN FORM -->
 		<div class="user-input">
 			
 			<input type="url" placeholder="Just paste in the URL of the event you want to check" autofocus>
@@ -74,6 +86,13 @@
 				</div>
 			</a>
 		</div>
+
+		<!-- LOADING -->
+		<div class="loading">
+			<img src="assets/img/loader_placeholder.gif" alt="loading...">
+		</div>
+
+		<!-- FINAL RESULTS -->
 		<div class="results">
 			<div class="event-date">
 				<span class="white-line"></span>
@@ -102,6 +121,8 @@
 				<button class="see see-guys" data-section="#guys-overlay"></button>
 			</div>
 		</div>
+
+		<!-- OVERLAYS -->
 		<div class="overlay guys-overlay" id="guys-overlay">
 			<a class="close">
 				<i class="icon"></i>
@@ -115,12 +136,35 @@
 			</a>
 		</div>
 	</div>
+
+	<!-- FOOTER -->
 	<div class="footer">
 		<i class="infos"></i>
 		<div class="footer-wrapper">
-			
+			<div class="left-section">
+				<p>Concept and programming</p>
+				<a href="https://github.com/romainbraun" about="_blank">
+					<img src="assets/img/github.svg" class="svg github" alt="GitHub">
+				</a>
+				<a href="https://twitter.com/romain_braun" about="_blank">
+					<img src="assets/img/twitter.svg" class="svg twitter" alt="Twitter">
+				</a>
+				<span>Romain Braun</span>
+			</div>
+			<div class="right-section">
+				<p>Art direction and motion</p>
+				<span>Cyrill Durigon</span>
+				<a href="https://twitter.com/cyri2l" about="_blank">
+					<img src="assets/img/twitter.svg" class="svg twitter" alt="Twitter">
+				</a>
+				<a href="https://www.behance.net/kiill" about="_blank">
+					<img src="assets/img/behance.svg" class="svg behance" alt="Behance">
+				</a>
+			</div>
 		</div>
 	</div>
+
+
 	<script type="text/javascript" src="assets/js/dist/1.0.0.should-i-go.min.js"></script>
 	<script type="text/javascript">
 		(function(d, s, id) {

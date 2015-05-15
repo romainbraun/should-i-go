@@ -1,0 +1,180 @@
+/*RESULTS*/
+.results {
+	opacity: 0;
+	height: 0;
+}
+.results {
+	position: relative;
+}
+.results .event-name {
+	display: block;
+	margin: 0 auto;
+	width: 500px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	font-size: 16px;
+  	text-transform: uppercase;
+}
+.results .white-line {
+	display: inline-block;
+	vertical-align: middle;
+	height: 2px;
+	width: 50px;
+	margin: 0 10px;
+	background: #fff;
+}
+.results .event-date-block {
+	border: 1px solid #fff;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 8px 0;
+	width: 48px;
+	height: 32px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.results .event-date-block span {
+	font-size: 14px;
+	display: block;
+	margin: 0 auto;
+	text-transform: uppercase;
+}
+.results .male-icon {
+	fill: #3c9afe;
+}
+
+.results .female-icon {
+	fill: #fe64f8;
+}
+
+.male #Layer_1,
+.male-icon #Layer_1 {
+	display: none;
+}
+.female #Layer_2,
+.female-icon #Layer_2 {
+	display: none;
+}
+
+.results .girlDisplay {
+	position: relative;
+	z-index: 2;
+	width: 600px;
+	height: 600px;
+	display: block;
+	background: url(/assets/img/chick.png) 0 0 no-repeat;
+}
+.results.show .girlDisplay {
+    animation: girlDisplay 1.2s steps(30) .3s forwards;
+}
+
+.results .actions {
+	position: relative;
+}
+
+.results .see{
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 23px;
+	background: transparent;
+	border: solid #fff;
+	border-width: 1px 1px 1px 0;
+	color: #fff;
+	border-radius: 0 4px 4px 0;
+	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0;
+	-webkit-font-smoothing: antialiased;
+	line-height: 40px;
+	padding: 0;
+	position: absolute;
+	transition: all .2s ease;
+	cursor: pointer;
+}
+
+.results .see:hover {
+	width: 160px;
+}
+
+.results .see-guys {
+	border-width: 1px 0 1px 1px;
+	border-radius: 4px 0 0 4px;
+	right: 50%;
+	margin-right: -140px;
+	color: #fff;
+}
+
+.results .see-guys:hover {
+	color: rgb(35,74,116);
+	background: rgba(35,74,116,0.1);
+	border-color: #234a74;
+	margin-right: -180px;
+}
+
+.results .see-girls {
+	left: 50%;
+	margin-left: -140px;	
+	color: #fff;
+}
+
+.results .see-girls:hover {
+	background: rgba(111,53,111,0.1);
+	color: rgb(111,53,111);
+	border-color: #6f356f;	
+	margin-left: -180px;	
+}
+
+.see:before {
+    background: transparent;
+    border: solid #fff;
+    border-width: 0 0 1px 1px;
+    border-radius: 4px 0;
+    content: '';
+    display: block;
+    height: 30px;
+    left: -14px;
+    position: absolute;
+    top: 3px;
+    width: 28px;
+    transform: rotate(45deg);
+    transition: all .2s ease;
+}
+
+.see-guys:before {
+    background: transparent;
+    border: solid #fff;
+    border-width: 1px 1px 0 0;
+    border-radius: 4px 0;
+    content: '';
+    display: block;
+    height: 30px;
+    right: -14px;
+    left: inherit;
+    position: absolute;
+    top: 3px;
+    transform: rotate(45deg);
+    width: 28px;
+}
+.see-guys:hover:before {
+	/*background: rgba(35,74,116,0.1);*/
+	border-color: #234a74;
+	background: -moz-linear-gradient(0deg rgba(35,74,116,0.1) 48%, rgba(0,0,0,0) 48%); /* FF3.6+ */
+	background: -webkit-gradient(linear, right top, left bottom,  color-stop(48%,rgba(35,74,116,0.1)), color-stop(48%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg rgba(35,74,116,0.1) 48%,rgba(0,0,0,0) 48%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg rgba(35,74,116,0.1) 48%,rgba(0,0,0,0) 48%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg rgba(35,74,116,0.1) 48%,rgba(0,0,0,0) 48%); /* IE10+ */
+	background: linear-gradient(0deg rgba(35,74,116,0.1) 48%,rgba(0,0,0,0) 48%); /* W3C */
+}
+
+.see-girls:hover:before {
+	/*background: rgba(111,53,111,0.1);*/
+	border-color: #6f356f;	
+	background: -moz-linear-gradient(0deg rgba(111,53,111,0.1) 48%, rgba(0,0,0,0) 48%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top,   color-stop(48%,rgba(111,53,111,0.1)), color-stop(48%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(0deg rgba(111,53,111,0.1) 48%,rgba(0,0,0,0) 48%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(0deg rgba(111,53,111,0.1) 48%,rgba(0,0,0,0) 48%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(0deg rgba(111,53,111,0.1) 48%,rgba(0,0,0,0) 48%); /* IE10+ */
+	background: linear-gradient(0deg rgba(111,53,111,0.1) 48%,rgba(0,0,0,0) 48%); /* W3C */
+}

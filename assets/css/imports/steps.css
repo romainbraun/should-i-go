@@ -1,0 +1,36 @@
+/* STEPS */
+.step0, .step1 {
+	padding-top: 360px;
+	transition: padding-top .1s ease;
+    transition-delay: .7s;
+}
+.step2, .step3 {
+	padding-top: 270px;
+	transition: padding-top .1s ease;
+    transition-delay: .7s;
+}
+.step0 .facebook-login{
+	display: block;
+}
+.step0 .user-input{
+	opacity: 0;
+}
+.step2 .loading {
+	animation: showThat .3s forwards;
+	animation-delay: .7s;
+}
+
+.step2 .logo, .step3 .logo{
+	transform: scale(0.75);
+}
+.step2 .user-input {
+	display: block;
+	opacity: 1;
+	animation: hideThat .3s forwards;
+}
+.step3 .user-input {
+	display: none;
+}
+.step3 .results{
+	animation: showThat 1s forwards;
+}

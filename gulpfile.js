@@ -2,24 +2,25 @@
 (function () {
   'use strict';
 
-  var browserify    = require('browserify'),
-      gulp          = require('gulp'),
-      source        = require('vinyl-source-stream'),
-      buffer        = require('vinyl-buffer'),
-      uglify        = require('gulp-uglify'),
-      sourcemaps    = require('gulp-sourcemaps'),
-      awspublish    = require('gulp-awspublish'),
-      aws           = require('./aws.json'),
-      watch         = require('gulp-watch'),
-      minifyCSS     = require('gulp-minify-css'),
-      autoprefixer  = require('gulp-autoprefixer'),
-      size          = require('gulp-filesize'),
-      mocha         = require('gulp-mocha'),
-      lcov          = require('mocha-lcov-reporter'),
-      notify        = require("gulp-notify"),
-      tap           = require("gulp-tap"),
-      istanbul      = require("gulp-istanbul"),
-      fs            = require('fs');
+  var browserify      = require('browserify'),
+      gulp            = require('gulp'),
+      source          = require('vinyl-source-stream'),
+      buffer          = require('vinyl-buffer'),
+      uglify          = require('gulp-uglify'),
+      sourcemaps      = require('gulp-sourcemaps'),
+      awspublish      = require('gulp-awspublish'),
+      aws             = require('./aws.json'),
+      watch           = require('gulp-watch'),
+      minifyCSS       = require('gulp-minify-css'),
+      autoprefixer    = require('gulp-autoprefixer'),
+      size            = require('gulp-filesize'),
+      mocha           = require('gulp-mocha'),
+      lcov            = require('mocha-lcov-reporter'),
+      notify          = require("gulp-notify"),
+      tap             = require("gulp-tap"),
+      istanbul        = require("gulp-istanbul"),
+      fs              = require('fs'),
+      mochaPhantomJS  = require('gulp-mocha-phantomjs');
 
   // var aws = JSON.parse(awsInfos);
 
@@ -63,11 +64,11 @@
 
   gulp.task('css', function() {
     gulp.src('./assets/css/main.css')
+      .pipe(minifyCSS({keepSpecialComments: 0, relativeTo: './assets/css/', processImport: true}))
       .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
       }))
-      .pipe(minifyCSS({keepSpecialComments: 0, relativeTo: './assets/css/', processImport: true}))
       .pipe(gulp.dest('./assets/css/dist/'))
       .pipe(notify({
           "title": "Should I Go?",
@@ -84,7 +85,7 @@
       watch('assets/js/*.js', function (files, cb) {
           gulp.start('javascript', cb);
       });
-      watch('assets/css/*.css', function (files, cb) {
+      watch(['assets/css/**/*.css', '!assets/css/dist/*.css'], function (files, cb) {
           gulp.start('css', cb);
       });
   });
@@ -93,8 +94,8 @@
     return gulp.src('./assets/js/*.js')
       .pipe(istanbul({includeUntested: true}))
       .on('finish', function () {
-        gulp.src('./assets/js/test/test.js')
-          .pipe(mocha({reporter: 'spec'}))
+        gulp.src('./assets/js/test/test.html')
+          .pipe(mochaPhantomJS({reporter: 'spec'}))
           .pipe(istanbul.writeReports({
             dir: './assets/unit-test-coverage',
             reporters: [ 'lcov' ],

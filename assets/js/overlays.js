@@ -4,7 +4,8 @@
 
 	require('./lib/jquery.unveil.js');
 	
-	var $ = require('jquery');
+	var $ 		= require('jquery'),
+		Utils	= require('./utils.js');
 
 	/**
 	 * Placing the different blocks on the grid depending on the screen size
@@ -51,7 +52,7 @@
 	 * @return {none}
 	 */
 	function createButtons() {
-		Utils.createMarkaButton('.overlay', {
+		Utils.createMarkaButton('.close', {
 			shape: 'times',
 			orientation: 'right'
 		},

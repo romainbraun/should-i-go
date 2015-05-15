@@ -44,7 +44,7 @@
 	 */
 	window.fbAsyncInit = function() {
 		FB.init({
-			appId      : facebookCredentials.localAppId,
+			appId      : facebookCredentials.testAppId,
 			cookie     : true,
 			xfbml      : true,  
 			version    : 'v2.1' 
@@ -82,10 +82,14 @@
 				facebookAPI.getEventPeople(eventId, function (response) {
 					// Computing ratio
 					Algorithm.compute(response.data, function (results) {
-						// Displaying the results
-						View.displayRatio(results.boyPercent, results.girlPercent);
-						View.displayButtons(results.boyCount, results.girlCount);
-						Overlays.populate(results.boyTable, results.girlTable);
+						//Faking computing time to display the loader
+						setTimeout(function () {
+							// Displaying the results
+							View.goTo(3);
+							View.displayRatio(results.boyPercent, results.girlPercent);
+							View.displayButtons(results.boyCount, results.girlCount);
+							Overlays.populate(results.boyTable, results.girlTable);
+						}, 2000);
 					});
 				});
 			});

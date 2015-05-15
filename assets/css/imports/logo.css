@@ -1,0 +1,43 @@
+/*LOGO*/
+.logo {
+	position: absolute;
+	width: 500px;
+	display: block;
+	margin: 0 auto;
+	top: 0;
+	left: 50%;
+	transition: transform .7s ease;
+    transition-delay: .5s;
+    transform-origin: 0 0;
+}
+.logo-wrapper {
+	left: -50%;
+	position: relative;
+}
+.logo a {
+	position: relative;
+	z-index: 2;
+	width: 359px;
+	height: 258px;
+	display: block;
+	margin: 71px auto;
+	background: url(/assets/img/spritealigned.png) 0 0 no-repeat;
+}
+.show .logo a {
+    animation: logo 1s steps(23) .3s forwards;
+}
+.logo img {
+	height: 100%;
+	z-index: 1;
+    vertical-align: bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+	transition: opacity 1.3s ease;
+    transition-delay: .5s;
+}
+.show .logo img {
+	opacity: 1;
+}

@@ -1,0 +1,70 @@
+/*Facebook login*/
+.facebook-login h1 {
+	margin-bottom: 30px;
+}
+.welcome {
+	text-transform: uppercase;
+	font-size: 24px;
+}
+.facebook-login {
+	display: none;	
+}
+
+.fb-login {
+	width: 320px;
+	height: 60px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 18px;
+	background: transparent;
+	border: 1px solid #3c5a98;
+	color: #3c5a98;
+	border-radius: 6px;
+	font-family: 'Fjalla One', sans-serif;
+	-webkit-text-stroke: 0;
+	-webkit-font-smoothing: antialiased;
+	line-height: 60px;
+	padding: 0;
+	margin: 45px auto 5px auto;
+	overflow: hidden;
+}
+
+.fb-login span {
+	display: inline-block;
+	font-size: 24px;
+}
+.facebook-login .female, .facebook-login .male {
+	width: 50px;
+	height: 50px;
+}
+
+.fb-login-wrapper {
+	background: -moz-linear-gradient(top,  rgba(60,90,152,0.1) 0%, rgba(60,90,152,0.1) 40%, rgba(60,90,152,0) 60%, rgba(60,90,152,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(60,90,152,0.1)), color-stop(40%,rgba(60,90,152,0.1)), color-stop(60%,rgba(60,90,152,0)), color-stop(100%,rgba(60,90,152,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(60,90,152,0.1) 0%,rgba(60,90,152,0.1) 40%,rgba(60,90,152,0) 60%,rgba(60,90,152,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(60,90,152,0.1) 0%,rgba(60,90,152,0.1) 40%,rgba(60,90,152,0) 60%,rgba(60,90,152,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(60,90,152,0.1) 0%,rgba(60,90,152,0.1) 40%,rgba(60,90,152,0) 60%,rgba(60,90,152,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(60,90,152,0.1) 0%,rgba(60,90,152,0.1) 40%,rgba(60,90,152,0) 60%,rgba(60,90,152,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+	cursor: pointer;
+	transform:  translateY(-82px);
+	transition: transform .2s ease;
+}
+.fb-login-wrapper:hover {
+	transform:  translateY(0);
+	transition: transform .2s ease;
+}
+
+.fb-login .svg path {
+	fill: #3c5a98;
+}
+.facebook {
+	display: inline-block;
+	vertical-align: middle;
+	width: 60px;
+	height: 37px;
+}
+.facebook-info {
+	color: #3c5a98;
+	font-size: 11px;
+}
