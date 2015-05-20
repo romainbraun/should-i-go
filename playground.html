@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SVG Playground</title>
+</head>
+<body>
+	<div id="svg"></div>
+	<script src="node_modules/snapsvg/dist/snap.svg-min.js"></script>
+	<script type="text/javascript">
+	var s = Snap(800, 600);
+
+	var leftRect = s.rect(100, 100, 300, 200);
+
+	var rightRect = s.rect(400, 100, 300, 200);
+
+	var gloss = s.polygon(100, 100, 700, 100, 100, 300);
+
+	
+
+	var group = s.group(leftRect, rightRect, gloss);
+
+	// group.attr({
+	// 	'width': 200,
+	// 	'height': 300
+	// });
+
+    // p = p.pattern(0, 0, 300, 400);
+
+	leftRect.attr({
+		fill: '#FF64F9'
+	});
+	rightRect.attr({
+		fill: '#3C9AFF'
+	});
+
+	gloss.attr({
+		fill: "#ffffff",
+		'fill-opacity': 0.2
+	});
+
+	group.animate({
+		'width': 100,
+		'height': 100
+	}, 1000);
+
+	leftRect.animate({
+		'width': 100,
+	}, 1000, mina.easeinout);
+	rightRect.animate({
+		'width': 500,
+		'x': 200
+	}, 1000, mina.easeinout);
+	// 
+	// 
+
+	</script>
+</body>
+</html>
