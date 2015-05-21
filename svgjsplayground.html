@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SVG Playground</title>
+</head>
+<body>
+	<div id="svg"></div>
+	<script src="assets/js/lib/svg.js"></script>
+	<script type="text/javascript">
+	
+	var draw = SVG('svg').size(800, 600);
+
+	var leftRect = draw.rect(300, 200);
+	var rightRect = draw.rect(300, 200);
+	var gloss = draw.polygon('100,100 700,100 100,300');
+	var maskTest = draw.circle(100);
+
+	gloss.attr({
+		fill: "#fff",
+		'fill-opacity': 0.2
+	});
+	leftRect.attr({
+		x: 100,
+		y: 100,
+		fill: '#FF64F9'
+	});
+	rightRect.attr({
+		x: 400,
+		y: 100,
+		fill: '#3C9AFF'
+	});
+	</script>
+</body>
+</html>
