@@ -2,33 +2,150 @@
 <html>
 <head>
 	<title>SVG Playground</title>
+	<style type="text/css">
+	body {
+		background-color: #ff0;
+	}
+	</style>
 </head>
 <body>
 	<div id="svg"></div>
+	<img src="assets/img/gender.svg" class="svg" id="gender" style="display:none;">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="assets/js/lib/svg.js"></script>
+	<script src="assets/js/lib/svg.parser.min.js"></script>
+	<script src="assets/js/lib/svg.import.min.js"></script>
 	<script type="text/javascript">
-	
-	var draw = SVG('svg').size(800, 600);
+	function replaceAllSVGs() {
+		$('img.svg').each(function(){
+			var $img = $(this),
+				imgID = $img.attr('id'),
+				imgClass = $img.attr('class'),
+				imgURL = $img.attr('src');
 
-	var leftRect = draw.rect(300, 200);
-	var rightRect = draw.rect(300, 200);
-	var gloss = draw.polygon('100,100 700,100 100,300');
-	var maskTest = draw.circle(100);
+			$.get(imgURL, function(data) {
+			// Get the SVG tag, ignore the rest
+			var $svg = $(data).find('svg');
 
-	gloss.attr({
-		fill: "#fff",
-		'fill-opacity': 0.2
-	});
-	leftRect.attr({
-		x: 100,
-		y: 100,
-		fill: '#FF64F9'
-	});
-	rightRect.attr({
-		x: 400,
-		y: 100,
-		fill: '#3C9AFF'
-	});
+			// Add replaced image's ID to the new SVG
+			if(typeof imgID !== 'undefined') {
+				$svg = $svg.attr('id', imgID);
+			}
+			// Add replaced image's classes to the new SVG
+			if(typeof imgClass !== 'undefined') {
+				$svg = $svg.attr('class', imgClass+' replaced-svg');
+			}
+
+			// Remove any invalid XML tags as per http://validator.w3.org
+			$svg = $svg.removeAttr('xmlns:a');
+
+			// Replace image with new SVG
+			$img.replaceWith($svg);
+
+			}, 'xml');
+
+		});
+	}
+	</script>
+	<script type="text/javascript">
+	replaceAllSVGs();
+	var gender;
+	setTimeout(function () {
+
+		var draw = SVG('svg').size(800, 600);
+		console.log($('#gender').html());
+		gender = draw.svg($('#gender').html());
+		var girl = gender.get('Layer_1');
+		var boy = gender.get('Layer_2');
+		// console.log(gender.get('Layer_1'));
+		// gender.get('Layer_1').attr({
+		// 	fill: "#FF64F9",
+		// 	scale: 2	
+		// });
+		
+		girl.fill("#FF64F9").scale(0);
+		girl.transform({y: 200});
+		girl.transform({x: 100});
+		
+		boy.fill("#3C9AFF").scale(0);
+		boy.transform({y: 200});
+		boy.transform({x: 700});
+		var bigRectangle = draw.group();
+
+		var leftRect = draw.rect(300, 200);
+		var rightRect = draw.rect(300, 200);
+		var gloss = draw.polygon('100,100 700,100 100,300');
+
+		bigRectangle.add(leftRect);
+		bigRectangle.add(rightRect);
+		bigRectangle.add(gloss);
+
+		var maskLeftCircle = draw.circle(200).fill("#000");
+		var maskRightCircle = draw.circle(200).fill("#000");
+		var maskRect = draw.rect(600, 200).fill("#fff");
+		var group = draw.group();
+		var set = draw.set();
+		var maskSet = draw.set();
+
+		set.add(leftRect);
+		set.add(rightRect);
+		// set.add(gloss);
+
+		group.add(maskRect);
+		group.add(maskLeftCircle);
+		group.add(maskRightCircle);
+
+		maskSet.add(maskLeftCircle);
+		maskSet.add(maskRightCircle);
+
+		gloss.attr({
+			fill: "#fff",
+			'fill-opacity': 0
+		});
+		leftRect.attr({
+			x: 100,
+			y: 100,
+			fill: '#FF64F9'
+		});
+		rightRect.attr({
+			x: 400,
+			y: 100,
+			fill: '#3C9AFF'
+		});
+		maskLeftCircle.transform({
+			x: 0,
+			y: 100
+		});
+		maskRightCircle.transform({
+			x: 600,
+			y: 100
+		});
+		maskRect.transform({
+			x: 100,
+			y: 100
+		});
+
+		bigRectangle.maskWith(group);
+		// set.height(0);
+		// set.y(200);
+		// set.animate().attr('height', 200).attr('y', 100);
+		girl.front();
+		boy.front();
+		girl.animate().scale(2.1).move(-45, 75);
+		boy.animate().scale(2.1).move(535, 75);
+		gloss.animate().attr('fill-opacity', 0.2);
+		leftRect.animate({'duration': 2000, 'delay': '0.3s'}).attr('width', 150);
+		rightRect.animate({'duration': 2000, 'delay': '0.3s'}).attr('width', 450).attr('x', 250);
+		// maskSet.front();
+		maskRect.height(0);
+		maskRect.y(100);
+		maskRect.animate().attr('height', 200).attr('y', 0);
+		maskRightCircle.radius(0);
+		maskRightCircle.animate().radius(100);
+		maskLeftCircle.radius(0);
+		maskLeftCircle.animate().radius(100);
+		// maskLeftCircle.animate().attr({'height': 200}).attr('y', 0);
+	}, 500);
 	</script>
 </body>
 </html>
