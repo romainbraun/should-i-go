@@ -2,6 +2,7 @@
 .results {
 	opacity: 0;
 	height: 0;
+	overflow: hidden;
 }
 .results {
 	position: relative;
@@ -71,6 +72,7 @@
 
 .results .actions {
 	position: relative;
+	height: 50px;
 }
 
 .results .see{
