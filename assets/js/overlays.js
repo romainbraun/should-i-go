@@ -35,7 +35,7 @@
 			$(this).removeClass('top-transition left-transition right-transition bottom-transition');
 			if (Math.floor(index / columns) === 0) {
 				$(this).addClass('top-transition');
-			} else if (index > totalItem - (totalItem % columns) - 1) {
+			} else if (index > totalItem - ((totalItem % columns) || columns) - 1) {
 				$(this).addClass('bottom-transition');
 			}
 			if (index % columns === 0) {
