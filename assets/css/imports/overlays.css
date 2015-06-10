@@ -54,6 +54,10 @@
 	transition: all .3s ease;
 	transition-delay:.1s;
 }
+.guys-overlay .person-overlay {
+	background: rgba(60, 154, 254, .8);
+	border: 8px solid #3C9AFE;
+}
 .person:hover .person-overlay {
 	opacity: .8;
 	transition-delay: 0s;
@@ -103,6 +107,9 @@
 	text-align: left;
 	padding-left: 12px;
 	cursor: pointer;
+}
+.guys-overlay .close {
+	background: #3C9AFE;	
 }
 
 .close:hover {
