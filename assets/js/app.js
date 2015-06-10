@@ -76,7 +76,7 @@
 			// Fetching the basic infos from the event (date, name)
 			facebookAPI.getEventInfos(eventId, function (response) {
 				if(response.error) {
-					alert('Please provide a valid Event URL');
+					window.alert('Please provide a valid Event URL');
 					return;
 				}
 				// Displaying the basic infos and switching to step 2
