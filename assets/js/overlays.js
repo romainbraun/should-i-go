@@ -16,7 +16,8 @@
 			columns		= Math.ceil(windowWidth / 200),
 			rest		= windowWidth % 200,
 			itemWidth	= 0,
-			itemCount	= 0;
+			itemCount	= 0,
+			totalItem	= $(section + ' .person').length;
 
 		// Adapting the size of the blocks if the screen size isn't a perfect multiple of 200
 		if (rest) {
@@ -31,10 +32,12 @@
 			$(this).css({width: itemWidth, height: itemWidth, left: (index % columns) * itemWidth, top: Math.floor(index / columns) * itemWidth});
 
 			// Adding specific classes if the blocks are on the sides / top / bottom / corners of the grid
-			$(this).removeClass('top-transition left-transition right-transition');
+			$(this).removeClass('top-transition left-transition right-transition bottom-transition');
 			if (Math.floor(index / columns) === 0) {
 				$(this).addClass('top-transition');
-			} 
+			} else if (index > totalItem - (totalItem % columns) - 1) {
+				$(this).addClass('bottom-transition');
+			}
 			if (index % columns === 0) {
 				$(this).addClass('left-transition');
 			} else if (index % columns === columns - 1){
