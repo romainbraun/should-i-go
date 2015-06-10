@@ -20,7 +20,8 @@
       tap             = require("gulp-tap"),
       istanbul        = require("gulp-istanbul"),
       fs              = require('fs'),
-      mochaPhantomJS  = require('gulp-mocha-phantomjs');
+      mochaPhantomJS  = require('gulp-mocha-phantomjs'),
+      livereload      = require('gulp-livereload');
 
   // var aws = JSON.parse(awsInfos);
 
@@ -102,6 +103,19 @@
             reportOpts: { dir: './assets/unit-test-coverage'}
           }));
       });
+  });
+
+  gulp.task('livereloadsvg', function () {
+    // gulp.src('svgjsplayground.html')
+    //   .pipe(livereload());
+    livereload.reload('svgjsplayground.html');
+  });
+
+  gulp.task('watchsvg', function () {
+    livereload.listen();
+    watch('svgjsplayground.html', function (files, cb) {
+        gulp.start('livereloadsvg', cb);
+    });
   });
 
 

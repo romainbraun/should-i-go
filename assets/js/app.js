@@ -29,8 +29,9 @@
 			// If the user is logged in let's switch to step 1
 			FB.api('/me', function() {
 				View.goTo(1);
-				console.log("%cThank you for looking into my code, stranger! Feel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
+				console.log("%cFeel free to fork me on %s!", 'background: #3c9afe; color: #fff', 'https://github.com/romainbraun/should-i-go');
 				$('body').addClass('show');
+				$('#url-input').focus();
 			});
 		} else {
 			// Otherwise let's show him the login button

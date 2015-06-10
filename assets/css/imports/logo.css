@@ -17,14 +17,14 @@
 .logo a {
 	position: relative;
 	z-index: 2;
-	width: 359px;
-	height: 258px;
+	width: 400px;
+	height: 300px;
 	display: block;
-	margin: 71px auto;
-	background: url(/assets/img/spritealigned.png) 0 0 no-repeat;
+	margin: 51px auto;
+	background: url(/assets/img/logo.png) 0 0 no-repeat;
 }
 .show .logo a {
-    animation: logo 1s steps(23) .3s forwards;
+    animation: logo 1s steps(28) forwards;
 }
 .logo img {
 	height: 100%;

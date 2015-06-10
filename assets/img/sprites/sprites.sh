@@ -20,7 +20,7 @@ then
     echo "Generating sprite file...";
     FILES=$(ls $folder/*$ext | tr '\n' ' ');
     
-    montage +frame +shadow +label -tile 1x -gravity West -background transparent -geometry +0+0 -tile 32X1 -resize ${width}X${height} ${FILES[@]} $spritename/$name$ext;
+    montage +frame +shadow +label -tile 1x -gravity West -background transparent -geometry +0+0 -tile 29X1 -resize ${width}X${height} ${FILES[@]} $spritename/$name$ext;
     
     echo "Sprite complete!";
 else

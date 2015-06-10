@@ -57,11 +57,32 @@
 		gender = draw.svg($('#gender').html());
 		var girl = gender.get('Layer_1');
 		var boy = gender.get('Layer_2');
-		// console.log(gender.get('Layer_1'));
-		// gender.get('Layer_1').attr({
-		// 	fill: "#FF64F9",
-		// 	scale: 2	
-		// });
+		var girlText = draw.text("0");
+		var boyText = draw.text("0");
+		var girlPercent = draw.text('%');
+		var boyPercent = draw.text('%');
+		var font = {
+			family: 'Fjalla One',
+			size: 72,
+			anchor: 'middle',
+			leading: '.5'
+		};
+		var percentFont = {
+			family: 'Fjalla One',
+			size: 30,
+			leading: '1'
+		};
+		girlText.font(font);
+		boyText.font(font);
+		girlPercent.font(percentFont);
+		boyPercent.font(percentFont);
+
+		girlText.fill('#fff');
+		girlText.transform({x: 100, y:200});
+		girlPercent.fill('#fff');
+		girlPercent.transform({x: 120, y:205});
+		girlText.attr({'fill-opacity': 0});
+		girlPercent.attr({'fill-opacity': 0});
 		
 		girl.fill("#FF64F9").scale(0);
 		girl.transform({y: 200});
@@ -131,19 +152,24 @@
 		// set.animate().attr('height', 200).attr('y', 100);
 		girl.front();
 		boy.front();
-		girl.animate().scale(2.1).move(-45, 75);
-		boy.animate().scale(2.1).move(535, 75);
-		gloss.animate().attr('fill-opacity', 0.2);
-		leftRect.animate({'duration': 2000, 'delay': '0.3s'}).attr('width', 150);
-		rightRect.animate({'duration': 2000, 'delay': '0.3s'}).attr('width', 450).attr('x', 250);
 		// maskSet.front();
 		maskRect.height(0);
 		maskRect.y(100);
-		maskRect.animate().attr('height', 200).attr('y', 0);
 		maskRightCircle.radius(0);
-		maskRightCircle.animate().radius(100);
 		maskLeftCircle.radius(0);
-		maskLeftCircle.animate().radius(100);
+		gender.get('SvgjsPath1010').scale(0).transform({'x': 100});
+
+		girl.animate({'duration': 2000}).scale(2.1).move(-45, 75);
+		boy.animate({'duration': 2000}).scale(2.1).move(535, 75);
+		gloss.animate().attr('fill-opacity', 0.2);
+		leftRect.animate({'duration': 4000, 'delay': '0.6s'}).attr('width', 150);
+		rightRect.animate({'duration': 4000, 'delay': '0.6s'}).attr('width', 450).attr('x', 250);
+		girlText.animate({'duration': 1000, 'delay': '0.6s'}).attr('fill-opacity', 1);
+		girlPercent.animate({'duration': 1000, 'delay': '0.6s'}).attr('fill-opacity', 1);
+		maskRect.animate({'duration': 2000}).attr('height', 200).attr('y', 0);
+		maskRightCircle.animate({'duration': 2000}).radius(100);
+		maskLeftCircle.animate({'duration': 2000}).radius(100);
+		gender.get('SvgjsPath1010').animate({'duration': 1000, delay: '0.5s'}).scale(1).move(70,100);
 		// maskLeftCircle.animate().attr({'height': 200}).attr('y', 0);
 	}, 500);
 	</script>
