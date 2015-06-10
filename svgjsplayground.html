@@ -53,14 +53,35 @@
 	setTimeout(function () {
 
 		var draw = SVG('svg').size(800, 600);
-		console.log($('#gender').html());
-		gender = draw.svg($('#gender').html());
-		var girl = gender.get('Layer_1');
-		var boy = gender.get('Layer_2');
+		// gender = draw.svg($('#gender').html());
+		// var girl = gender.get('Layer_1');
+		// var boy = gender.get('Layer_2');
 		var girlText = draw.text("0");
 		var boyText = draw.text("0");
 		var girlPercent = draw.text('%');
 		var boyPercent = draw.text('%');
+		var boyCircle = draw.circle(190);
+		var girlCircle = draw.circle(190);
+		boyCircle.fill('none').attr({
+			'fill': 'none',
+			'stroke': "#FF64F9",
+			'stroke-width': 10
+		});
+		boyCircle.transform({
+			x:10,
+			y:105
+		});
+		girlCircle.fill('none').attr({
+			'fill': 'none',
+			'stroke': "#3C9AFF",
+			'stroke-width': 10
+		});
+		girlCircle.transform({
+			x:600,
+			y:105
+		});
+		boyCircle.front();
+		girlCircle.front();
 		var font = {
 			family: 'Fjalla One',
 			size: 72,
@@ -84,13 +105,13 @@
 		girlText.attr({'fill-opacity': 0});
 		girlPercent.attr({'fill-opacity': 0});
 		
-		girl.fill("#FF64F9").scale(0);
-		girl.transform({y: 200});
-		girl.transform({x: 100});
+		// girl.fill("#FF64F9").scale(0);
+		// girl.transform({y: 200});
+		// girl.transform({x: 100});
 		
-		boy.fill("#3C9AFF").scale(0);
-		boy.transform({y: 200});
-		boy.transform({x: 700});
+		// boy.fill("#3C9AFF").scale(0);
+		// boy.transform({y: 200});
+		// boy.transform({x: 700});
 		var bigRectangle = draw.group();
 
 		var leftRect = draw.rect(300, 200);
@@ -150,17 +171,18 @@
 		// set.height(0);
 		// set.y(200);
 		// set.animate().attr('height', 200).attr('y', 100);
-		girl.front();
-		boy.front();
+		// girl.front();
+		// boy.front();
 		// maskSet.front();
+		boyCircle.front();
 		maskRect.height(0);
 		maskRect.y(100);
 		maskRightCircle.radius(0);
 		maskLeftCircle.radius(0);
-		gender.get('SvgjsPath1010').scale(0).transform({'x': 100});
+		// gender.get('SvgjsPath1010').scale(0).transform({'x': 100});
 
-		girl.animate({'duration': 2000}).scale(2.1).move(-45, 75);
-		boy.animate({'duration': 2000}).scale(2.1).move(535, 75);
+		// girl.animate({'duration': 2000}).scale(2.1).move(-45, 75);
+		// boy.animate({'duration': 2000}).scale(2.1).move(535, 75);
 		gloss.animate().attr('fill-opacity', 0.2);
 		leftRect.animate({'duration': 4000, 'delay': '0.6s'}).attr('width', 150);
 		rightRect.animate({'duration': 4000, 'delay': '0.6s'}).attr('width', 450).attr('x', 250);
@@ -169,7 +191,7 @@
 		maskRect.animate({'duration': 2000}).attr('height', 200).attr('y', 0);
 		maskRightCircle.animate({'duration': 2000}).radius(100);
 		maskLeftCircle.animate({'duration': 2000}).radius(100);
-		gender.get('SvgjsPath1010').animate({'duration': 1000, delay: '0.5s'}).scale(1).move(70,100);
+		// gender.get('SvgjsPath1010').animate({'duration': 1000, delay: '0.5s'}).scale(1).move(70,100);
 		// maskLeftCircle.animate().attr({'height': 200}).attr('y', 0);
 	}, 500);
 	</script>
