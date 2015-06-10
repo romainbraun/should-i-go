@@ -7,6 +7,7 @@
 	overflow: hidden;
 	min-height: 100%;
 	background: #000;
+	z-index: 10;
 }
 
 .overlay.show {
@@ -66,7 +67,11 @@
 	transition: all .3s ease;
 	transition-delay: .1s;
 	-webkit-backface-visibility: hidden;
-	line-height: 1;
+	line-height: 1.1;
+	text-overflow: ellipsis;
+	width: 90%;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .person:hover span {
 	opacity: 1;
@@ -81,7 +86,7 @@
 	transition-delay: .1s;
 }
 .person:hover hr {
-	width: 80%;
+	width: calc(100% - 14px);
 }
 
 .close {

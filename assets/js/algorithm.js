@@ -39,16 +39,25 @@
 	 */
 	function checkRatio(people, callback) {
 		for (var i=0, peopleLength = people.length; i < peopleLength; i++) { 
-			var personName = Utils.keepFirstName(people[i].first_name); //Just keeping the first part of the first name if it's made of more than one name 
-			personName					= Utils.removeDiacritics(personName.toUpperCase()); //Getting rid of weird characters. 
-			correspondingMaleTable		= maleNames[personName.substring(0,1)];
-			correspondingFemaleTable	= femaleNames[personName.substring(0,1)];
+			var personName = Utils.keepFirstName(people[i].first_name), //Just keeping the first part of the first name if it's made of more than one name 
+			personName					= Utils.removeDiacritics(personName.toUpperCase()), //Getting rid of weird characters. 
+			correspondingMaleTable		= maleNames[personName.substring(0,1)],
+			correspondingFemaleTable	= femaleNames[personName.substring(0,1)],
+			isMale,
+			isFemale;
 
-			if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) { 
+			isMale = Utils.searchForCorrespondance(personName, correspondingMaleTable);
+			isFemale = Utils.searchForCorrespondance(personName, correspondingFemaleTable);
+			if (isMale && !isFemale) {
 				maleTable.push(people[i]);
-			} else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
-				femaleTable.push(people[i]); 
+			} else if (isFemale && !isMale) {
+				femaleTable.push(people[i]);
 			}
+			// if (Utils.searchForCorrespondance(personName, correspondingMaleTable)) { 
+			// 	maleTable.push(people[i]);
+			// } else if (Utils.searchForCorrespondance(personName, correspondingFemaleTable)) {
+			// 	femaleTable.push(people[i]); 
+			// }
 		}
 
 		result = Utils.computeRatio(maleTable, femaleTable, peopleLength);

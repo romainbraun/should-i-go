@@ -91,6 +91,7 @@
 
 		// Disabling body scrolling
 		$('body').css({overflow:'hidden'});
+		$('body').scrollTop(0);
 	};
 
 
